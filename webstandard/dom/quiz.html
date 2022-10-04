@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="val1" type="text">+<input id="val2" type="text">=<input id="userInput" type="text">
+    <button id="btn_result">결과확인</button><button id="btn_reset">다시</button>
+    <script>
+        //1)난수 2발생
+        const random1 = Math.floor(Math.random()*1000) + 1;
+        const random2 = Math.floor(Math.random()*1000) + 1;
+        //2)input 요소에 난수 반영
+        $val1 = document.getElementById('val1');
+        $val2 = document.getElementById('val2');
+        
+        $val1.value = random1;
+        $val2.value = random2;
+        
+        //3)결과 확인 버튼 클릭
+        //3.1) input 요소값 더한 값과 사용자 입력값 비교
+        const $btnResult = document.getElementById('btn_result');
+        $btnResult.addEventListener('click', compare_r);
+        function compare_r(e) {
+            console.log('결과 확인버튼 클릭');
+            const resultOfComputer = pargeInt($val1.value) + parseInt($val2.value);
+            console.log(resultOfComputer);
+            const $userInput = document.getElementById('userInput');
+
+            if( resultOfComputer == $userInput.value){
+                console.log('일치');
+                $userInput.classList.add('bg_green');
+                $userInput.classList.remove('bg_red');
+            }else{
+                console.log('불일치');
+                $userInput.classList.add('bg_red');
+                $userInput.classList.remove('bg_green');
+            }
+        }
+        //3.1.1) 일치하면 배경색 초록,불일치하면 배경색 빨강
+        
+        
+        //4)다시 버튼 클릭
+        const $btnReset = document.getElementById('btn_reset');
+        $btnReset.addEventListener('click', restart);
+        function restart(e) {
+            console.log('다시 버튼 클릭');
+        }
+        //4.1) 2)적용
+        //4.2) 결과 요소 초기화
+    </script>
+</body>
+</html>

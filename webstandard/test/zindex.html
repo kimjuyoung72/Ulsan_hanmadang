@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --global-color-yellow:rgb(248, 214, 63);
+            --menu-height : 10px;
+        }
+        * { outline: 1px solid grey;}
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            position: relative;
+        }
+        ul li {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+        ul li:nth-of-type(1) {
+            background-color: var(--global-color-yellow);
+            transition: all 0.8s;
+            z-index: 1;
+            width: calc(var(--menu-height)*30);
+            height: calc(var(--menu-height)*30);
+            opacity: 0.7;
+            box-shadow: 3px 3px 7px #000;
+        }
+        ul li:nth-of-type(2) {
+            background-color: yellowgreen;
+            transition: all 0.8s;
+            z-index: 2;
+            width: calc(var(--menu-height)*20);
+            height: calc(var(--menu-height)*20);
+            opacity: 0.7;
+            box-shadow: 3px 3px 7px #000;
+        }
+        ul li:nth-of-type(3) {
+            
+            background-color: rgb(50, 135, 205);
+            transition: all 0.8s;
+            z-index: 3;
+            width: calc(var(--menu-height)*10);
+            height: calc(var(--menu-height)*10);
+            opacity: 0.7;
+            box-shadow: 3px 3px 7px #000;
+            border-radius: 5%;
+            background: linear-gradient(to right, rgb(50, 135, 205), yellowgreen);
+            /* position: relative; */
+        }
+        /* ul li:nth-of-type(3):hover {
+            transform: scale(1.2);
+            z-index: 1;
+        } */
+        p {
+            font-size: 60px;
+            text-shadow: 5px 5px 10px #000;
+        }
+    </style>
+</head>
+<body>
+    <p>text shodow</p>
+    <nv>
+        <ul>
+            <li>menu1</li>
+            <li>menu2</li>
+            <li>menu3</li>
+            <li>menu4</li>
+            <li>menu5</li>
+        </ul>
+    </nv>
+</body>
+</html>

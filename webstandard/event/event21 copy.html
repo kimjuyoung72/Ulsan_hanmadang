@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event capturing, bublering</title>
+</head>
+<style>
+    #container .menu:hover {
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div id="container">
+        <ul class="menu">
+            <li class="menu__item">menu1</li>
+            <li class="menu__item">menu2</li>
+            <li class="menu__item">menu3</li>
+        </ul>
+        <ul id="msg"></ul>
+    </div>
+    <script>
+        const $menus = document.querySelectorAll('#container>.menu .menu__item');
+        const selectMenu_h = e => {
+            console.log(e.target);
+            document.getElementById('msg').textContent = `${e.target.textContent} 메뉴를 선택했습니다.`;
+        };
+        for(let item of $menus){
+            item.addEventListener('click', selectMenu_h)
+        }
+
+    </script>
+</body>
+</html>

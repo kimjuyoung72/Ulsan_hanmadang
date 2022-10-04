@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {outline:1px solid red;}
+    .active { background-color: yellow;}
+  
+  </style>
+</head>
+<body>
+  <div id="container">
+    <ul class="menu">
+      <li class="menu__item" data-selected-menu="m1">menu1</li>
+      <li class="menu__item" data-selected-menu="m2">menu2</li>
+      <li class="menu__item" data-selected-menu="m3">menu3</li>
+    </ul>
+    <div id="msg"></div>
+  </div>
+  <script>
+    let selected = 0;
+    const changeBgColor = e=>{
+        if(selected > 0){
+            document.querySelector(`ul li:nth-child(${selected})`).classList.toggle('active');
+        }
+        const choice = target.dataset.selectedMenu;
+        console.log(choice);
+        switch(choice){
+            case 'm1': document.querySelector('ul li:nth-child(1)').classList.toggle('active');
+                selected = 1;
+                break;
+            case 'm2': document.querySelector('ul li:nth-child(2)').classList.toggle('active');
+                selected = 2;
+                break;
+            case 'm3': document.querySelector('ul li:nth-child(3)').classList.toggle('active');
+                selected = 3;
+                break;
+            default: break;
+        }
+
+    }
+
+    const selectMenu_h = e => {
+      console.log(e.type, e.target, e.currentTarget);
+      const msg = `${e.target.textContent} 메뉴를 선택했습니다.`;
+      document.getElementById('msg').textContent = msg;
+
+      changeBgColor(e);
+    }
+
+    document.querySelector('#container .menu').addEventListener('click', selectMenu_h);
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {outline:1px solid red;}
+
+    .color__red { background-color: red;}
+    .color__green { background-color: green;}
+    .color__blue { background-color: blue;}
+
+  </style>
+</head>
+<body>
+  <div id="container">
+    <ul class="menu">
+      <li class="menu__item" data-selected-menu="m1">menu1</li>
+      <li class="menu__item" data-selected-menu="m2">menu2</li>
+      <li class="menu__item" data-selected-menu="m3">menu3</li>
+    </ul>
+    <div id="msg">메뉴를 선택했습니다</div>
+  </div>
+  <script>
+
+    //메뉴 배경색 변경
+    const changeBgColor = e=>{
+      
+      //객체 구조분해(destructuring)
+      const {type, target, currentTarget} = e;
+      const $menu = document.querySelector('.menu');
+
+      const choice = target.dataset.selectedMenu;
+      
+      $menu.classList.toggle('color__red', choice == 'm1');
+      $menu.classList.toggle('color__green',  choice == 'm2');
+      $menu.classList.toggle('color__blue',  choice == 'm3');
+    }
+
+    const selectMenu_h = e => {
+      console.log(e.type, e.target, e.currentTarget);
+      const msg = `${e.target.textContent} 메뉴를 선택했습니다.`;
+      document.getElementById('msg').textContent = msg;
+
+      changeBgColor(e);
+    }
+
+    document.querySelector('#container .menu')
+            .addEventListener('click', selectMenu_h);
+  </script>
+</body>
+</html>

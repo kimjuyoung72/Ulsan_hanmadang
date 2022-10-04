@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>평가 화면 구현</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <header id="header">
+            <div id="topMenu">
+                <div class="top_aside">' '</div>
+                <div class="top_center">
+                    <a href="">로그인</a>
+                    <a href="">회원가입</a>     
+                </div>
+                <div class="top_aside">' '</div>
+            </div>
+            <div id="logo"><img src="https://cdn.pixabay.com/photo/2017/03/07/20/45/cog-wheels-2125169__340.jpg" alt=""></img></div>
+            <nav id="gnb">
+                <ul class="gnb__menu">
+                    <li class="gnb__menu_item"><a href="">웹표준</a></li>
+                    <li class="gnb__menu_item"><a href="">자바</a></li>
+                    <li class="gnb__menu_item"><a href="">안드로이드</a></li>
+                    <li class="gnb__menu_item"><a href="">데이터베이스</a></li>
+                    <li class="gnb__menu_item"><a href="">스프링</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="body">
+            <aside class="aside_left"></aside>
+            <div class="center">
+                <main id="main">
+                    <section class="main__section_left addtional_info">
+                         
+                    </section>
+                    <section class="main__section_right">
+                        <div class="form_wrap">
+                            <h3>회원가입</h3>
+                            <form action="">
+                                아이디 <input type="text">
+                                비밀번호 <input type="password">
+                                비밀번호 확인<input type="password">
+                                전화번호 <input type="tel">
+                                별칭 <input type="text">
+                                지역 <select name="snack" id="snack">
+                                    <option value="선택">==선택==</option>
+                                    <option value="서울">서울</option>
+                                    <option value="부산">부산</option>
+                                    <option value="대구">대구</option>
+                                    <option value="대전">대전</option>
+                                    <option value="울산">울산</option>
+                                  </select>
+                                성별
+                                <div class="gender">
+                                    <input type="radio" name="gender" id="male"><label for="male">남자</label>
+                                    <input type="radio" name="gender" id="female"><label for="female">여자</label>
+                                </div>
+                                취미
+                                <div class="hobby">
+                                    <input type="checkbox" name="" value="독서" id="v1"><label for="v1">독서</label>
+                                    <input type="checkbox" name="" value="음악감상" id="v2"><label for="v2">음악감상</label>
+                                    <input type="checkbox" name="" value="운동" id="v3"><label for="v3">운동</label>
+                                    <input type="checkbox" name="" value="게임" id="v3"><label for="v3">게임</label>
+                                </div>
+                                생년월일 <input type="date">
+                                <button>회원가입</button>
+                            </form>
+                        </div>
+                    </section>
+                </main>
+                <footer id="footer">
+                    <p>Copyright by Gildong Hong. All rights Reserved</p>
+                </footer>
+            </div>
+            <aside class="aside_right"></aside>
+        </div>
+
+    </div>
+</body>
+</html>

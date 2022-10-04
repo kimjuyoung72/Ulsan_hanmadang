@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* * {outline:1px solid red;} */
+    table {
+      border: 1px solid #ccc;
+      border-collapse: collapse;
+    }
+    table th,
+    table td{
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="btngrp">
+      <button class="btn btn__list">데이터수신</button>
+    </div>
+    <div class="criteria">
+      <fieldset class="criteria__gender">
+        <legend>성별</legend>
+        <label for="male">남</label><input type="radio" name="gender" id="남">
+        <label for="female">여</label><input type="radio" name="gender" id="여">
+      </fieldset>
+      <fieldset class="criteria__sort--age">
+        <legend>나이순 정렬</legend>
+        <label for="asc">오름차순</label><input type="radio" name="sort" id="asc">
+        <label for="desc">내림차순</label><input type="radio" name="sort" id="desc">
+      </fieldset>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>성별</th>
+          <th>나이</th>
+          <th>혈액형</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>이름1</td>
+          <td>남</td>
+          <td>10</td>
+          <td>A</td>
+        </tr>
+      -->
+      </tbody>
+    </table>
+
+  </div>
+  <script>
+    const data = {
+      result:'success',    // success: 수신성공, fail:수신실패
+      data:[
+        {name:'이름1',gender:'남',age:10,blood:'A'},
+        {name:'이름2',gender:'여',age:20,blood:'B'},
+        {name:'이름3',gender:'남',age:30,blood:'O'},
+        {name:'이름4',gender:'여',age:40,blood:'AB'},
+        {name:'이름5',gender:'남',age:50,blood:'A'}
+      ]
+    };
+
+    //객체1개를 tr태그로 렌더링
+    const trTag = ({name,gender,age,blood})=>{
+      return `<tr><td>${name}</td><td>${gender}</td><td>${age}</td><td>${blood}</td></tr>`
+    };       
+    
+    //이벤트 타겟
+    const $btnList = document.querySelector('.btn.btn__list');
+    const $criteriaGender = document.querySelector('.criteria__gender');
+    const $tbody = document.querySelector('table tbody');
+    const $btnRadios = document.querySelectorAll('.criteria__gender input[type=radio]');
+
+    const $criteriaSort = document.querySelector('.criteria__sort--age');
+    const $btnradioSorts = document.querySelector('.criteria__sort--age input[type=radio]');
+
+    document.querySelectorAll('.criteria__gender input[type = radio]');
+    //이벤트 핸들러
+    /* 데이터수신 클릭시 */
+    
+      //데이터 추출
+    $btnList.addEventListener('click', e => { 
+        $tbody.innerHTML = data.data.map(ele=>trTag(ele)).join('');
+        [...$btnRadios,...$btnradioSorts].filter(ele => ele.checked == true)   //체크된것을 골라
+                                        .forEach(ele => ele.checked = false); //해제
+    });
+    /* 데이터수신 종료 */
+    /* 성별 클릭시*/
+    $criteriaGender.addEventListener('change',({target,currentTarget}) => {
+        // data.data.filter(ele=>ele.gender==target.id).
+        
+        $tbody.innerHTML = data.data.filter(ele=>ele.gender==target.id)
+                                .map(ele=>trTag(ele)).join('');
+    });
+    /* 정렬 클릭시*/ 
+    $criteriaSort.addEventListener('change', ({target}) => {
+        //undefined or checked input element
+        const statusOfGender = [...$btnRadios].find(ele => ele.chedked == true);
+        console.log(statusOfGender);
+        let sortfunc = '';
+        switch(target.id){
+            case "asc":
+                sortfunc = (pre,next) => pre.age-next.age;
+                break;
+            case "desc":
+                sortfunc = (pre,next) => next.age-pre.age;
+                break;
+        }
+        if(!statusOfGender){ //undefined 는 falsy
+            $tbody.innerHTML = data.data.sort(sortfunc) //정렬
+                                .map(ele => trTag(ele)) //랜더링
+                                .join('');              //배열요소연결
+        }else{
+            $tbody.innerHTML = data.data.filter(ele => ele.gender == statusOfGender.id)
+                                .sort(sortfunc) //정렬
+                                .map(ele => trTag(ele)) //랜더링
+                                .join('');              //배열요소연결                        
+        }
+    });
+  </script>
+</body>
+</html> 

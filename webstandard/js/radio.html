@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio button</title>
+</head>
+<body>
+    <fieldset>
+        <legend>밥 선택</legend>
+        <input type="radio" name="bap" id="v1"><label for="v1">국밥</label>
+        <input type="radio" name="bap" id="v2"><label for="v2">덮밥</label>
+        <input type="radio" name="bap" id="v3"><label for="v3">비밥</label>
+    </fieldset>    
+    <div id="msg"></div>
+    <script>
+        // const $v1 = document.getElementById('v1');
+        // const $v2 = document.getElementById('v2');
+        // const $v3 = document.getElementById('v3');
+
+        // $v1.addEventListener('click', select_v1_h);
+        // $v1.addEventListener('mouseenter', select_v1_h);
+        // $v2.addEventListener('click', select_v2_h);
+        // $v3.addEventListener('click', select_v3_h);
+
+        // function select_v1_h(e) {
+        //     console.log('v1클릭');
+        //     console.log(e.type);
+        //     console.log(e.target);
+        // }
+        // function select_v2_h() {
+        //     console.log('v2클릭');
+        // }
+        // function select_v3_h() {
+        //     console.log('v3클릭');
+        // }
+        const $radios = document.querySelectorAll('input[type=radio]');
+        console.log($radios);
+        console.log(document.querySelector('fieldset').children);
+        console.log(document.querySelector('fieldset').firstElementChild);
+        console.log(document.querySelector('fieldset').lastElementChild);
+
+        //case1)
+        // for(let i = 0; i < $radios.length; i++){
+        //     console.log($radios[i]);
+        //     $radios[i].addEventListener('click',select_radio_h)
+        // }
+        //case2)
+        // for(let $radio of $radios){
+        //     $radio.addEventListener('click',select_radio_h)
+        // }
+        //case3)
+        // $radios.forEach(function(ele){
+        //     ele.addEventListener('click',select_radio_h)
+        // });
+        // $radios.forEach(element => {
+        //     element.addEventListener('click',select_radio_h);
+        // });
+        $radios.forEach(ele => ele.addEventListener('click', select_radio_h));
+        
+        function select_radio_h(e) {
+            // console.log(e.target.id);
+            // console.log(e.target.parentElement);
+            // console.log(e.target.previousElementSibling);
+            // console.log(e.target.nextElementSibling.textContent);
+            // console.log(e.target.closest('body'));
+            const selected_radio = e.target.nextElementSibling.textContent;
+            console.log(selected_radio);
+            const msg = `${selected_radio}를 선택하였습니다.`;
+            document.getElementById('msg').textContent = msg;
+        }
+        // for(let ele of $radios){
+        //     console.log(ele);
+        // }
+        // $radios.forEach(element => {
+        //     console.log(element);
+        // });
+    </script>
+</body>
+</html>

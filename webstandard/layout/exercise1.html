@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root { --basic-element-height: 45px;}
+        * {outline: 1px solid grey;}
+        body {height: 100vh;}
+        #wrap {
+            height: 100%;
+            text-align: center;
+        }
+        #wrap div {
+            display: flex;
+            justify-content: center;
+            
+        }
+        #wrap div .center {width: 60vw;}
+        #wrap div:nth-of-type(1) {background-color: rgb(33, 5, 59);}
+        #wrap div:nth-of-type(2) {background-color: rgb(75, 16, 131);}
+        #wrap div:nth-of-type(3) {background-color: rgb(121, 56, 182);}
+        #wrap div:nth-of-type(4) {background-color: rgb(212, 220, 226);}
+        #wrap div:nth-of-type(5) {background-color: rgb(206, 173, 236);}
+        #wrap div:nth-of-type(6) {background-color: rgb(217, 203, 231);}
+        #upperMenu .center{
+            background-color: rgb(67, 12, 117);
+            width: 80vw;
+            color: #fff;
+            height: var(--basic-element-height);
+            line-height: var(--basic-element-height);
+            
+        }
+        #header {
+            background-color: blueviolet;
+            height: calc(var(--basic-element-height)*3);
+            line-height: calc(var(--basic-element-height)*3);
+        }
+        #gnb {
+            background-color: rgb(173, 124, 219);
+            height: var(--basic-element-height);
+            line-height: var(--basic-element-height);
+        }
+        #main {
+            display: flex;
+            height: calc(var(--basic-element-height)*8);  
+            line-height: calc(var(--basic-element-height)*8); 
+            border: 5px solid #000;
+            box-sizing: border-box;
+        }
+        #main section {
+            flex: 3;
+            background-color: rgb(54, 52, 52);
+        }
+        #main aside {flex: 1;}
+        #main .left-aside {background-color: rgb(23, 102, 167);}
+        #main .right-aside {background-color: rgba(26, 177, 182, 0.966);}
+        #footerMenu {
+            height: var(--basic-element-height);
+            line-height: var(--basic-element-height);
+            background-color: rgb(200, 177, 221);
+        }
+        #footer {
+            height: calc(var(--basic-element-height)*3);
+            line-height: calc(var(--basic-element-height)*3);
+            background-color: rgb(230, 219, 241);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div ><nav id="upperMenu" class="center">upper menu</nav></div>
+        <div><header id="header" class="center">header</header></div>
+        <div><nav id="gnb" class="center">gnb</nav></div>
+        <div><main id="main" class="center">
+            <section class="content">content</section>
+            <aside class="left-aside">sidebanner</aside>
+            <aside class="right-aside">sidemenu</aside>
+        </main></div>
+        <div><nav id="footerMenu" class="center">footer menu</nav></div>
+        <div><footer id="footer" class="center">footer</footer></div>
+    </div>
+</body>
+</html>

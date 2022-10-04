@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text on image</title>
+</head>
+    <style>
+        * {outline: 1px solid gray;}
+        ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #container .product {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #container .product .product__item {
+            flex-basis: 250px;
+            flex-shrink: 0;
+            position: relative;
+        }
+        #container .product .product__item img {
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(10,10,10,0.8));
+        }
+        #container .product .product__item .profile .profile__contents {
+            position: absolute;
+            bottom: 0;
+            color:azure;
+
+        }
+        #container .product .product__item .profile .profile__contents p {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.8s;
+        }
+        #container .product .product__item .profile .profile__contents:hover p {
+            max-height: 100px;
+            opacity: 0.8;
+            overflow: hidden;
+        }
+    </style>
+<body>
+    <div id="container">
+        <ul class="product">
+            <li class="product__item">
+                <div class="profile">
+                    <img src="https://cdn.pixabay.com/photo/2018/06/21/11/19/architecture-3488306__340.jpg" alt="">
+                    <div class="profile__contents">
+                        <h4>Lorem, ipsum.</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, saepe.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="product__item">
+                <div class="profile">
+                    <img src="https://cdn.pixabay.com/photo/2019/09/24/07/07/milky-way-4500469__340.jpg" alt="">
+                    <div class="profile__contents">
+                        <h4>Lorem, ipsum.</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae maiores ab nisi.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="product__item">
+                <div class="profile">
+                    <img src="https://cdn.pixabay.com/photo/2015/07/20/13/01/man-852770__340.jpg" alt="">
+                    <div class="profile__contents">
+                        <h4>Lorem, ipsum.</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima necessitatibus laborum quae.</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom 5</title>
+    <script src="create_element.js"></script>
+</head>
+<body>
+    <div id="container">
+        <ul>
+            <!-- 아래것을 넣고 싶다구! -->
+            <!-- <li>menu1</li>
+            <li>menu2</li>
+            <li>menu3</li> -->
+        </ul>
+    </div>
+    <button>클릭</button>
+    <script>
+        const $button = document.querySelector('button');
+        
+        const addButton_h = function(e) {
+            const $div = makeElements('div',null,
+                makeElements('li', null, 'menu1'),
+                makeElements('li', null, 'menu2'),
+                makeElements('li', null, 'menu3')
+            );
+            document.querySelector('#container ul').appendChild($div);
+        }
+        $button.addEventListener('click', addButton_h);
+    </script>
+</body>
+</html>

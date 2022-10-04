@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두개의 매개변수값을 입력받아 덧셈하는 함수</title>
+</head>
+<body>
+    <script>
+        const x = 10;
+        const y = 20;
+        console.log(x + y);
+
+        //case1)함수선언문
+        function add(x,y){
+            return x+y;
+        }
+        console.log(`x+y = ${add(x,y)}`);
+
+        //case2)함수표현식
+        const add2 = function(x,y){
+            return x+y;
+        }
+        console.log(`x+y = ${add2(x,y)}`);
+        
+        //case3)화살표함수
+        const add3 = (x,y) => {
+            return x+y;
+        }
+        console.log(`x+y = ${add3(x,y)}`);
+        
+        /*함수 몸체에 return 문만 있는 경우 중괄호,return 생략가능*/
+        const add4 = (x,y) => x+y;
+        console.log(add4);
+        console.log(`x+y = ${add4(x,y)+25}`);
+
+    </script>
+</body>
+</html>

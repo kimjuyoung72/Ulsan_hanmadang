@@ -1,0 +1,163 @@
+@charset "utf-8";
+
+:root {
+    --min-height-rows: 150px; /*분활 블럭의 최소 높이*/
+    --min-width-columns: 100px; /*분활 블럭의 최소 너비*/
+    --div-rows-body: 10; /* 세로 분활 블럭 수 */
+    --div-columns-body: 10; /* 가로 분활 블럭 수 */
+    --div-ratio-aside: 2; /*사이드 영역 블럭 수 */
+    --div-height-header: 1; /*헤더 높이 블럭 수*/
+    --div-height-footer: 1; /*푸터 높이 블럭 수*/
+    --start-row-mid: calc(1 + var(--div-height-header));
+    --div-height-mid: calc(var(--div-rows-body) - calc(var(--div-height-header) + var(--div-height-footer)));
+    --div-width-main: calc(var(--div-columns-body) - var(--div-ratio-aside));
+    --min-width-img: 120px;
+    --min-height-img: 150px;
+    --min-width-fc: 50px;
+}
+* {outline: 1px solid gray;}
+body {
+    margin: 0;
+}
+#wrapper {
+    display: grid;
+    grid-template-rows: repeat(var(--div-rows-body), minmax(var(--min-height-rows), auto));
+    grid-template-columns: repeat(var(--div-columns-body), 1fr);
+}
+/*헤더: 로고 + 탑 메뉴 + GNB + 검색창 */
+header {
+    display: grid;
+    grid-template-columns: repeat(var(--div-columns-body), 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-row: 1/ span var(--div-height-header);
+    grid-column: 1/-1;
+}    /*로고*/
+header #logo {
+    grid-row: 1 / span 2;
+    grid-column: 2 / span 6;
+}    /*탑 메뉴: 권한별 메뉴 + 회원 + 로그*/
+header #topMenu {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* grid-row: 3 / span 1; */
+    grid-column: 8 / span 3;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+}    /*권한별 메뉴*/
+header #topMenu #memberMenu {
+    flex: 0.8;
+    text-align: center;
+}   /*회원*/
+header #topMenu #sign {
+    flex: 1;
+    text-align: end;
+}   /*로그*/
+header #topMenu #log {
+    flex: 1;
+    text-align: center;
+}   /*메뉴: gnb + 검색창*/
+header #gnb {
+    display: flex;
+    align-items: center;
+    grid-row: 3 / -1;
+    grid-column: 2 / span 6;
+}
+header #gnb li {
+    flex: 1;
+    text-align: center;
+}
+   /*검색창*/
+header .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: 3 / span 1;
+    grid-column: 8 / -1;
+    position: relative;
+}   /*검색창: 입력창*/
+header .search .search__input {
+    height: 1.8em;
+    width: 80%;
+    border: 1px solid grey;
+    border-radius: 10px;
+}   /*검색창: 버튼*/
+header .search .search__btn {
+    position: absolute;
+    right: 60px;
+    font-size: 0.7em;
+    background-color: rgba(248, 238, 238, 0);
+    border-style: none;
+    z-index: 1;
+}   /*버튼: 아이콘*/
+header .search .search__btn i {
+    font-size: 1.8em;
+}
+header .search .search__btn:hover {
+    cursor: pointer;
+}
+/*메인 영역*/
+main {
+    display: flex;
+    flex-direction: column;
+    grid-row: var(--start-row-mid) / span var(--div-height-mid);
+    grid-column: var(--div-ratio-aside) / span calc(var(--div-columns-body) - var(--div-ratio-aside));
+}   /*메인 상단: 홍보 이미지*/
+main .content__upper {
+    display: grid;
+    grid-auto-rows: var(--min-height-img);
+    grid-template-columns: repeat(auto-fit, minmax(calc(var(--min-width-img) + var(--min-width-fc)), 1fr));
+    gap: 30px;
+    margin: 30px 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+main .content__upper .ad {
+    display: flex;
+}
+main .content__upper .ad img {
+    flex: 3;
+    min-width: var(--min-width-img);
+}
+main .content__upper .ad:nth-child(1) {
+    grid-row: 1 / span 3;
+    grid-column: 1 / span 2;
+}
+main .content__upper .ad img {
+    flex: 3;
+   
+}
+main .content__upper .ad p {
+    flex: 1;
+    min-width: 50px;
+    margin: 0 5px;
+    overflow: hidden;
+}
+main .content__lower {
+    /* height: 50%; */
+}
+/*푸터*/
+footer {
+    grid-row: var(--div-rows-body)/ span var(--div-height-footer);
+    grid-column: 1/-1;
+}
+/*사이드*/
+aside {
+    grid-row: var(--start-row-mid) / span var(--div-height-mid);
+}
+/*미디어 쿼리*/
+@media screen and (max-width : 1440px) {
+    header #logo {
+        background-color: rgb(113, 179, 236);
+    }
+}
+@media screen and (max-width : 1024px) {
+    header #logo {
+        background-color: rgb(248, 240, 132);
+    }
+@media screen and (max-width : 640px) {
+    header #logo {
+        background-color: rgb(243, 141, 221);
+    }
+}
+}

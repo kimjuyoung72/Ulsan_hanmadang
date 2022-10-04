@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>메인화면</title>
+</head>
+<body>
+<ul>
+    <!-- a 태그: GET방식 + href(=url) -->
+    <!-- <ui><a href="/items">상품관리</a></ui>   -->
+    <ui><a href="/items" id="menu1">상품관리</a></ui>  
+    <ui><a href="#"></a></ui>
+    <ui><a href="#"></a></ui>
+</ul>
+<script>
+    document.getElementById('menu1').addEventListener('click', e => {
+        e.preventDefault(); //대상의 이벤트 강제 차단.
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/items');  //http 요청 초기화
+        xhr.setRequestHeader('Content-Type', 'text/html');  //Header 
+        xhr.send(); //Server에 http 요청 메시지 전송
+
+        const received_h = e => {
+            if(xhr.status == '200') {   //status:상태코드
+                console.log(xhr.responseText);  //responseText:응답메시지
+                document.documentElement.innerHTML = xhr.responseText;  //root element의 html에 할당.
+            }else {
+                console.log('error', xhr.status, xhr.statusText);   //statusText:상태 메시지
+            }
+        }
+        xhr.addEventListener('load', received_h);
+
+    });
+</script>
+</body>
+</html>

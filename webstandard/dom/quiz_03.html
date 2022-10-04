@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz 3.1번</title>
+    <style>
+        /* * {outline: 1px solid grey;} */
+        #wrapper .operators {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 15px;
+            border: 1px solid rgb(163, 163, 163);
+        }
+        #wrapper .operators label {
+            border: 1px solid rgb(163, 163, 163);
+        }
+        #wrapper .operators label input {
+            
+        }
+        #wrapper .meta {
+            display: flex;
+            /* justify-content: space-around; */
+            margin: 5px;
+            font-size: 0.8rem;
+        }
+        #wrapper .meta li {
+            flex: 1;
+            margin: 0;
+            text-align: center;
+            list-style: none;
+        }
+        #warpper .meta div {
+            width: 33%;
+            
+        }
+        #wrapper .input {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 20px;
+        }
+        #wrapper .input .input__window {
+            text-align: center;
+        }
+        #wrapper .input .selected_radio {
+            min-width: 10px;
+            min-height: 10px;
+        }
+        #wrapper .exe {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+        #wrapper .exe button {
+            min-width: 150px;
+            
+        }
+        input.bg_green {
+            background-color: yellowgreen;
+        }
+        input.bg_red {
+            background-color: rgb(199, 43, 43);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        
+        <div class="operators">4칙연산자 
+            <label for="sum"></label><input type="radio" name="radio_btn" id="sum" class="operator">덧 셈</label>
+            <label for="sub"></label><input type="radio" name="radio_btn" id="sub" class="operator">뺄 셈</label>
+            <label for="mul"></label><input type="radio" name="radio_btn" id="mul" class="operator">곱 셈</label>
+            <label for="div"></label><input type="radio" name="radio_btn" id="div" class="operator">나눗셈</label>
+        </div>
+        <div class="meta">
+            <li>난수1</li>
+            <li>난수2</li>
+            <li class="computed">정답</li>
+        </div>
+        <div class="input">
+            <input class="input__window input01__window" type="text" value=""></input>
+            <div class="selected_radio"></div>
+            <input class="input__window input02__window" type="text" value=""></input>=
+            <input id="userInput" class="input__window input03__window" type="text" value="" placeholder="정답 입력"></input>
+        </div>
+        <div class="exe">
+            <button class="btn_result">결과 확인</button>
+            <button class="btn_reset">다시 풀기</button>
+        </div>
+    </div>
+    <script>
+        let randomNum1;
+        let randomNum2;
+        let $input1;
+        let $input2;
+        let $input3;
+        let result;
+        let flag;
+        let selected_op;
+        const $userInput = document.getElementById('userInput');
+        const $btnResult = document.querySelector('.btn_result');
+        initialize();
+        $btnResult.addEventListener('click', compare_result);
+        //4칙 연산 라디오 버턴을 선택하면 해당 연산후 정답 계산,출력
+        const $radios = document.querySelectorAll('input[type=radio]');
+        $radios.forEach(ele=>{
+            ele.addEventListener('click', e=>{
+                selected_op = e.target.id;
+                set_result();    
+            });
+        });
+        function set_result(){
+            console.log(selected_op);
+            switch(selected_op){
+                case 'sum': result = parseInt($input1.value) + parseInt($input2.value);
+                document.querySelector('.input .selected_radio').textContent = '+';
+                            break;
+                case 'sub': result = parseInt($input1.value) - parseInt($input2.value);
+                document.querySelector('.input .selected_radio').textContent = '-';
+                            break;
+                case 'mul': result = parseInt($input1.value) * parseInt($input2.value);
+                document.querySelector('.input .selected_radio').textContent = 'x';
+                            break;
+                case 'div': result = parseInt($input1.value) / parseInt($input2.value);
+                document.querySelector('.input .selected_radio').textContent = '/';
+                            break;
+                default: break;
+            }
+            document.querySelector('.computed').textContent = '정답 = ' + result;
+        }
+                function compare_result (e) {
+            console.log('확인 클릭!');
+            if(flag == 1){$userInput.classList.remove('bg_green');}
+            else if(flag == 0){$userInput.classList.remove('bg_red');}
+
+            if(($userInput.value !== '') && (selected_op !== '')){
+                if( result == $userInput.value){
+                    console.log('일치');
+                    $userInput.classList.add('bg_green');
+                    $userInput.style.color = '#111';
+                    flag = 1;
+                    
+                }else{
+                    console.log('불일치');
+                    $userInput.classList.add('bg_red');
+                    $userInput.style.color = '#eee';
+                    flag = 0;
+                }
+            }
+        }
+        //다시 버튼 클릭 : 난수 다시 채우고 예상 결과창 비우기.
+        $btnReset = document.querySelector('.btn_reset');
+        $btnReset.addEventListener('click',reset);
+        function reset(e) {
+            console.log('다시 클릭!');
+            if(flag == 1){$userInput.classList.remove('bg_green');}
+            else if(flag == 0){$userInput.classList.remove('bg_red');}
+            $userInput.value = '';
+            $userInput.style.color = '#111';
+        }
+        function initialize() {
+            randomNum1 = Math.floor(Math.random()*1000) + 1;
+            randomNum2 = Math.floor(Math.random()*1000) + 1;
+            $input1 = document.querySelector('.input .input01__window');
+            $input2 = document.querySelector('.input .input02__window');
+            $input1.value = randomNum1;
+            $input2.value = randomNum2;
+            selected_op = '';
+            document.querySelector('.computed').textContent = '정답';
+            if(flag == 1){$userInput.classList.remove('bg_green');}
+            else if(flag == 0){$userInput.classList.remove('bg_red');}
+        }
+    </script>
+</body>
+</html>

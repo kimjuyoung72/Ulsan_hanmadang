@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz 5번 select</title>
+    <script src="create_element.js"></script>
+    <style>
+        * {outline: 1px solid grey;}
+        #operators {
+            width: 150px;
+            margin: 0;
+        }
+        #wrapper .meta {
+            display: flex;
+            /* justify-content: space-around; */
+            margin: 5px;
+            font-size: 0.8rem;
+        }
+        #wrapper .meta li {
+            flex: 1;
+            margin: 0;
+            text-align: center;
+            list-style: none;
+        }
+        #warpper .meta div {
+            width: 33%; 
+        }
+        #wrapper .ioArea {
+            display: flex;
+            flex-direction: column;
+        }
+        #wrapper .ioArea .input {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 20px;
+        }
+        #wrapper .ioArea .input .input__window {
+            text-align: center;
+        }
+        #wrapper .ioArea .input .selected_op {
+            min-width: 10px;
+            min-height: 10px;
+        }
+        #wrapper .exe {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+        #wrapper .exe button {
+            min-width: 150px;
+            
+        }
+        input.bg_green {
+            background-color: yellowgreen;
+        }
+        input.bg_red {
+            background-color: rgb(199, 43, 43);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <select name="" id="operators"> 
+            <option value="select_meta">연산자선택</option>
+            <option value="sum">덧셈</option>
+            <option value="sub">뺄셈</option>
+            <option value="mul">곱셈</option>
+            <option value="div">나눗셈</option>
+        </select>
+        <div class="meta">
+            <li>난수1</li>
+            <li>난수2</li>
+            <li class="computed">정답</li>
+        </div>
+        <div class="ioArea">
+
+            <div class="input">
+                <input id="random1" class="input__window" type="text" value=""></input>
+                <div class="selected_op"></div>
+                <input id="random2" class="input__window" type="text" value=""></input>=
+                <input id="userInput" class="input__window" type="text" value="" placeholder="정답 입력"></input>
+            </div>
+        </div>
+        <div class="exe">
+            <button class="btn_result">결과 확인</button>
+            <button class="btn_reset">다시 풀기</button>
+        </div>
+    </div>
+    <script>
+        let randomNum1;
+        let randomNum2;
+        let $input1;
+        let $input2;
+        let $input3;
+        let result;
+        let flag;
+        let count = 1;
+        let selected_op;
+        const $userInput = document.getElementById('userInput');
+        const $btnResult = document.querySelector('.btn_result');
+        initialize();
+        $btnResult.addEventListener('click', compare_result);
+        //4칙 연산 라디오 버턴을 선택하면 해당 연산후 정답 계산,출력
+        const $operators = document.getElementById('operators');
+        $operators.addEventListener('change', select_operator_h);
+        function select_operator_h(e) {
+            console.log(e.target.val);
+            selected_op = e.target.value;
+            set_result();
+        }
+        function set_result(){
+            console.log(selected_op);
+            switch(selected_op){
+                case 'select_meta': 
+                            document.querySelector('.input .selected_op').textContent = '';
+                            break;
+                case 'sum': result = parseInt($input1.value) + parseInt($input2.value);
+                            document.querySelector('.input .selected_op').textContent = '+';
+                            break;
+                case 'sub': result = parseInt($input1.value) - parseInt($input2.value);
+                            document.querySelector('.input .selected_op').textContent = '-';
+                            break;
+                case 'mul': result = parseInt($input1.value) * parseInt($input2.value);
+                            document.querySelector('.input .selected_op').textContent = 'x';
+                            break;
+                case 'div': result = parseInt($input1.value) / parseInt($input2.value);
+                            document.querySelector('.input .selected_op').textContent = '/';
+                            break;
+                default: break;
+            }
+            if(selected_op == 'select_meta') {
+                document.querySelector('.computed').textContent = '정답';
+            }else {
+                document.querySelector('.computed').textContent = '정답 = ' + result;
+            }
+            
+        }
+        function compare_result (e) {
+            console.log('확인 클릭!');
+            if(flag == 1){$userInput.classList.remove('bg_green');}
+            else if(flag == 0){$userInput.classList.remove('bg_red');}
+
+            if(($userInput.value !== '') && (selected_op !== 'select_meta')){
+                if( result == $userInput.value){
+                    console.log('일치');
+                    $userInput.classList.add('bg_green');
+                    $userInput.style.color = '#111';
+                    flag = 1;
+                    copyInputs();
+                    initialize();
+                }else{
+                    console.log('불일치');
+                    $userInput.classList.add('bg_red');
+                    $userInput.style.color = '#eee';
+                    flag = 0;
+                }
+            }
+        }
+        //다시 버튼 클릭 : 난수 다시 채우고 예상 결과창 비우기.
+        $btnReset = document.querySelector('.btn_reset');
+        $btnReset.addEventListener('click',reset);
+        function reset(e) {
+            console.log('다시 클릭!');
+            if(flag == 1){$userInput.classList.remove('bg_green');}
+            else if(flag == 0){$userInput.classList.remove('bg_red');}
+            $userInput.value = '';
+            $userInput.style.color = '#111';
+        }
+        function initialize() {
+            randomNum1 = Math.floor(Math.random()*1000) + 1;
+            randomNum2 = Math.floor(Math.random()*1000) + 1;
+            $input1 = document.getElementById('random1');
+            $input2 = document.getElementById('random2');
+            $input1.value = randomNum1;
+            $input2.value = randomNum2;
+            // selected_op = 'select_meta';
+            document.querySelector('.computed').textContent = '정답';
+            if(flag == 1){$userInput.classList.remove('bg_green');}
+            else if(flag == 0){$userInput.classList.remove('bg_red');}
+        }
+        function copyInputs() {
+            // document.getElementById('userInput').id = 'solved';
+            document.querySelectorAll('.input input').removeA = 'solved';
+            
+            const $input = makeElements('div', {class:'input'}, 
+                            makeElements('input', {id:'random1', class:'input__window', type:'text'}),
+                            makeElements('div', {class:'selected_op', type:'text'}),
+                            makeElements('input', {id:'random2', class:'input__window', type:'text'}),'=',
+                            makeElements('input', {id:'userInput', class:'input__window', 
+                                        type:'text', placeholder:'정답 입력'})
+            );
+
+            document.querySelector('.ioArea').appendChild($input);
+        }
+    </script>
+</body>
+</html>

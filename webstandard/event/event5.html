@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>even 5</title>
+</head>
+<style>
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <fieldset>
+            <legend>취미</legend>
+            <div class="hobby_item select__all">
+                <input type="checkbox" name="" id="allChk"><span>전체선택</span>
+            </div>
+            <ul class="hobby">
+                <li class="hobby__item">
+                    <input type="checkbox" name="" id=""><span>취미1</span>
+                </li>
+                <li class="hobby__item">
+                    <input type="checkbox" name="" id=""><span>취미2</span>
+                </li>
+                <li class="hobby__item">
+                    <input type="checkbox" name="" id=""><span>취미3</span>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+</body>
+    <script>
+        // const allChkChange_h = e => {
+        //     console.log(`change : ${e.target}`);
+        // }
+        const allChkClick_h = e => {
+            console.log(`click : ${e.target}`);
+            //hobby items를 찾아서
+            const $hobbies = document.querySelectorAll('.hobby__item input[type=checkbox]');
+            // console.log($hobbies);
+            // case1)
+            // for(let $hobby of $hobbies){
+            //     // if(e.target.checked){
+            //     //     $hobby.checked = true; //boolean 속성
+            //     // }else {
+            //     //     $hobby.checked = false;
+            //     // }
+            //     $hobby.checked = e.target.checked ? true : false;
+            // }
+            // case2)
+            // $hobbies.forEach($hobby=>{
+            //     $hobby.checked = e.target.checked ? true : false;
+            // });
+            // case3)
+            $hobbies.forEach($hobby=> $hobby.checked = e.target.checked ? true : false);
+
+        }
+        // document.getElementById('allChk').addEventListener('change', allChkChange_h);
+        document.getElementById('allChk').addEventListener('click', allChkClick_h);
+    </script>
+</html>

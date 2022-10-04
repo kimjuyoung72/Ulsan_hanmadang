@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+          box-sizing: border-box; 
+        }
+        body {
+          display: flex;
+          min-height: 100vh;
+          flex-direction: column;
+          margin: 0;
+        }
+        /* header * { outline: 1px solid grey;} */
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        /*header 영역*/
+        header .uppermost {
+            display: flex;
+            /* flex-direction: row-reverse; */
+            justify-content: space-between;
+        }
+        header .uppermost .logo {
+            padding: 3px 5px;
+            line-height: 3px;
+        }
+        header .uppermost .topmenu a {
+            padding: 5px 5px;
+            text-decoration: none;
+            /* line-height: 3px; */
+            
+        }
+        header .uppermost .topmenu a:hover {
+            /* background-color: rgb(187, 214, 132); */
+            color: rgb(243, 245, 238);
+        }
+        header .main_banner {
+            flex: 1;
+        }
+        header .main_banner img{
+            width: 100%;
+            height: 80px;
+        }
+        header nav {
+            /* flex: 1; */
+            height: 50px;
+            padding: 5px 0;
+        }
+        header nav ul {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+            display: flex;
+            /* justify-content: space-around; */
+        }
+        header nav ul li {
+            flex: 1;
+            text-align: center;
+            background-color: #000;
+            color: #D7E8D4;
+            /* padding: 5px 3px; */
+            height: 45px;
+            line-height: 45px;
+        }
+        header nav ul li:hover {
+            cursor: pointer;
+        }
+        header nav ul li a {
+            color: inherit;
+            text-decoration: none;
+        }
+        /*body 영역*/
+        #main {
+          display: flex;
+          flex: 1;
+        }
+        #main > article {
+          flex: 1;
+          order: 1;
+        }
+        #main > article > .content {
+            display: flex;
+            flex-direction: column;
+            flex-flow: wrap;
+            align-items: center;
+            max-height: 500px;
+            /* transition: all 1.5s; */
+        }
+        #main > article > .content img{
+            width: 150px;
+            margin: 10px;
+            border-radius: 3%;
+        }
+        #main > nav, 
+        #main > aside {
+          flex: 0 0 20vw;
+        }
+        #main > aside > .cards {
+            display: flex;
+            flex-flow: row wrap;
+        }
+        #main > aside > .cards > .card {
+            flex-basis: 100px;
+            margin: 10px;
+            font-size: 9px;
+            border-radius: 1%;
+            transition: all 0.5s;
+        }            
+        .card > .top > img {
+            border-radius: 5%;
+        }
+        #main > aside > .cards > .card:hover {
+            box-shadow: 1px 1px 3px #001;
+            z-index: 1;
+            transform: scale(1.015);
+        }            
+        #main > nav {
+          background: #D7E8D4;
+          order: 3;
+        }
+        #main > aside {
+          background: beige;
+          order: 2;
+        }
+        header, footer {
+          background: yellowgreen;
+          height: 20vh;
+        }
+        header, footer, article, nav, aside {
+          padding: 1em;
+        }
+      </style>
+</head>
+<body>
+    <header>
+        <div class="uppermost">
+            <div class="logo">울산 한마당</div>
+            <div class="topmenu">
+                <a href="">로그인</a>
+                <a href="">회원가입</a>
+            </div>
+            
+        </div>
+        <div class="main_banner">
+        <img src="https://cdn.pixabay.com/photo/2021/09/17/11/32/flowers-6632403__340.png" alt="">
+    </div>
+        <nav><ul>
+            <li><a href="https://pixabay.com/ko/" target="_blank">픽사베이</a></li>
+            <li>메뉴2</li>
+            <li>메뉴3</li>
+            <li>메뉴4</li>
+            <li>메뉴5</li>
+        </ul>
+        
+    </nav>
+    </header>
+    <div id="main">
+      <article>
+        <div class="content">
+            <img src="https://placeimg.com/150/150/any" alt="" class="item">
+            <img src="https://placeimg.com/150/150/any" alt="" class="item">
+            <img src="https://placeimg.com/150/150/any" alt="" class="item">
+            <img src="https://placeimg.com/150/150/any" alt="" class="item">
+            <img src="https://placeimg.com/150/150/any" alt="" class="item">
+            <img src="https://placeimg.com/150/150/any" alt="" class="item">
+            <img src="https://placeimg.com/150/150/any" alt="" class="item">
+            <img src="https://placeimg.com/150/150/any" alt="" class="item">
+            <img src="https://placeimg.com/150/150/any" alt="" class="item">
+        </div>
+      </article>
+      <nav>Nav</nav>
+      <aside>
+        <div class="cards">
+            <div class="card">
+                <div class="top"><img src="https://placeimg.com/100/100/any" alt=""></div>
+                <div class="body">
+                    <div class="heading"><h3>제목</h3></div>
+                    <div class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quam atque corporis beatae rem illo maxime eius veniam corrupti dolore!</div>
+                    <div class="bottom"><button>클릭</button></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="top"><img src="https://placeimg.com/100/100/any" alt=""></div>
+                <div class="body">
+                    <div class="heading">제목</div>
+                    <div class="body">본문</div>
+                    <div class="bottom"><button>클릭</button></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="top"><img src="https://placeimg.com/100/100/any" alt=""></div>
+                <div class="body">
+                    <div class="heading">제목</div>
+                    <div class="body">본문</div>
+                    <div class="bottom"><button>클릭</button></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="top"><img src="https://placeimg.com/100/100/any" alt=""></div>
+                <div class="body">
+                    <div class="heading">제목</div>
+                    <div class="body">본문</div>
+                    <div class="bottom"><button>클릭</button></div>
+                </div>
+            </div>
+        </div>
+      </aside>
+    </div>
+    <footer>Footer</footer>
+</body>
+</html>

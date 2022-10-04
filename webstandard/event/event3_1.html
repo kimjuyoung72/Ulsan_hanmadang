@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event 2 1</title>
+</head>
+<style>
+    * {outline: 1px solid gray;}
+    #container .menu:hover {
+        cursor: pointer;
+    }
+    .color__red {background-color: red;}
+    .color__green {background-color: green;}
+    .color__blue {background-color: blue;}
+    
+</style>
+<body>
+    <div id="container">
+        <ul class="menu">
+            <!-- 'data-' 로 시작해서 사용자 속성 정의 가능(케밥케이스) -->
+            <li class="menu__item" data-selected-menu="m1">menu1</li>
+            <!-- inline 방식 style -->
+            <!-- <li class="menu__item" data-selected-menu="m1" style="background-color: blue;">menu1</li> -->
+            <li class="menu__item" data-selected-menu="m2">menu2</li>
+            <li class="menu__item" data-selected-menu="m3">menu3</li>
+            <!-- <li class="menu__item" data-selected-menu="m4">menu4</li>
+            <li class="menu__item" data-selected-menu="m5">menu5</li>
+            <li class="menu__item" data-selected-menu="m6">menu6</li>
+            <li class="menu__item" data-selected-menu="m7">menu7</li>
+            <li class="menu__item" data-selected-menu="m8">menu8</li>
+            <li class="menu__item" data-selected-menu="m9">menu9</li> -->
+        </ul>
+        <div id="msg"></div>
+    </div>
+    <script>
+        const changeBgColor = e => {
+            //객체 구조분해(destructuring)
+            const {type, target, currentTarget} = e;
+            // const type = e.type;
+            // const target = e.target;
+            // const currentTarget = e.currentTarget;
+            //사용자 정의 속성 읽어 오기 : dataset.name(data-이후이름 camelCase)
+            // console.log(target.dataset.selectedMenu);
+            const $menu = document.querySelector('.menu');
+           
+                    // $menu.style.backgroundColor = 'blue'; //js inline 방식 style 부여
+            $menu.classList.toggle('color__red', choice == 'm1');
+            // $menu.classList.toggle('color__red', true); //add
+            // $menu.classList.toggle('color__red', false); //remove
+            $menu.classList.toggle('color__green', choice == 'm2');
+            $menu.classList.toggle('color__blue', choice == 'm3');
+           
+        }
+        // const selectMenu_h = e => document.getElementById('msg').textContent = `${e.target.textContent} 메뉴를 선택했습니다.`;
+        const selectMenu_h = e => {
+            console.log(e.type, e.target, e.currentTarget);
+            document.getElementById('msg').textContent = `${e.target.textContent} 메뉴를 선택했습니다.`;
+            changeBgColor(e);
+        };
+        document.querySelector('#container .menu').addEventListener('click', selectMenu_h);
+    </script>
+</body>
+</html>

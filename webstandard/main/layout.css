@@ -1,0 +1,17 @@
+@charset "utf-8";
+*{outline: 1px solid grey;}
+/*header area*/
+#header {
+    display:flex;
+    height: 100px;
+}
+#header .logo{flex: 1;}
+#header .menu{flex: 4;}
+#header .menu .menu-top {height: 40px;}
+#header .menu .gnb {height: 60px;}
+/*main area*/
+#container {display: flex;}
+#container #sectionLeft {flex: 2;}
+#container #sectionRight {flex: 1;}
+/*footer area*/
+#footer {height: 100px;}

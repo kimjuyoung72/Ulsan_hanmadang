@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/layout::main(
+        ~{::title},                 <!--/* title */-->
+        <!--/*--------------------------*/-->
+        <!--/*외부파일로 정의시 ex) link css */-->
+        ~{},                        <!--/* styles */-->
+        ~{},                        <!--/* scripts */-->
+        <!--/*내부태그로 정의시*/-->
+        ~{::style},                        <!--/* style */-->
+        ~{},                        <!--/* script */-->
+        <!--/*--------------------------*/-->
+        ~{::.upperHeader},          <!--/* upperHeader */-->
+        ~{::.nav},          <!--/* nav */-->
+        ~{::main},                  <!--/* main */-->
+        _                          <!--/* footer default*/-->
+      )}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="울산 문화 정보 사이트 메인 화면 기본 문서">
+  <meta name="keywords" content="울산,ulsan,information,홍보,advertisement,이벤트,event">
+  <meta name="author" content="KH java 할수있조">
+  <title>울산한마당 | 내정보수정</title>
+
+  <style>
+
+        .information .info__detail .detail__li{
+            display: flex;
+            margin: 20px 15px;
+        }
+        .information .info__detail {
+        }
+        .information .info__detail .ul_ {
+            height: 450px;
+        }
+
+        .information .info__detail .ul_ .detail__li .detail__span{
+            flex: 1;
+            /* outline: 1px solid greenyellow; */
+        }
+        .information .info__detail .ul_ .detail__li .detail__span_index {
+            flex: 2;
+            /* outline: 1px solid turquoise; */
+        }
+        /* 여기까지 my_info와 같음 */
+
+        /* .ul_ .detail__li .detail__span_index 개별 스타일 */
+            /* 닉네임 */
+        .ul_ .detail__li .detail__span_index{
+            border: none;
+        }
+        .ul_ .detail__li .detail__span_index #input__nickname {
+            width: 120px;
+        }
+            /* 닉네임 중복확인 */
+        .ul_ .detail__li .detail__span_index #btn__nick_duplicate {
+            font-size: 0.5em;
+            width: 60px;
+        }
+            /* 전화번호 */
+        .ul_ .detail__li .detail__span_index #tel{
+            width: 200px;
+        }
+            /* sms, email 서비스 상태 text */
+        .ul_ .detail__li .detail__span_index #sms__state,
+        .ul_ .detail__li .detail__span_index #email__state {
+            font-size: 0.6em;
+            font-style: italic;
+            color: red;
+        }
+            /* email input */
+        .ul_ .detail__li .detail__span_index .email {
+            width: 90px;
+        }
+        /* info__detail_bottom */
+        .info__detail .info__detail_bottom {
+            /* outline: 1px solid blue; */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+        }
+        .info__detail .info__detail_bottom #member__leave {
+            font-size: 0.6em;
+        }
+        .info__detail .info__detail_bottom #member__update {
+            margin: 15px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+
+  <div class="upperHeader">
+    <th:block th:replace="~{layout/upperHeader::afterUpperHeader}"></th:block>
+  </div>
+  <div class="nav">
+    <th:block th:replace="~{layout/nav::lowerHeader}"></th:block>
+  </div>
+
+  <!-- =========================================================================================== -->
+
+  <main id="myInfoMain">
+    <div class="container">
+      <div class="info__title">
+        <h2 id="title">내 정보</h2>
+      </div>
+
+      <div class="info__state">
+        <h3 id="state">내 정보 수정</h3>
+      </div>
+      <div class="information">
+        <div class="info__index info__list">
+          <div class="list__title">
+            <p>목록</p>
+          </div>
+
+          <th:block th:replace="~{layout/nav::infoMenu}"></th:block>
+
+        </div>
+        <div class="info__index info__detail">
+          <form th:action="@{/members/infoUpdate}" method="post" th:object="${editForm}">
+
+            <ul class="ul_">
+              <li class="detail__li">
+                <span class="detail__span">아이디</span>
+                <input class="detail__span_index" readonly th:field="*{email}">
+              </li>
+              <li class="detail__li">
+                <span class="detail__span">이름</span>
+                <input class="detail__span_index" readonly th:field="*{name}">
+              </li>
+              <li class="detail__li">
+                <span class="detail__span">닉네임</span>
+                <input type="text" id="input__nickname" th:field="*{nickname}">
+              </li>
+              <li class="detail__li">
+                <span class="detail__span">전화번호</span>
+                <input type="text" id="tel" placeholder="-" th:field="*{phone}">
+              </li>
+              <li class="detail__li">
+                <span class="detail__span">생년월일</span>
+                <input class="detail__span_index" id="birthday" readonly th:field="*{birthday}">
+              </li>
+              <li class="detail__li">
+                <span class="detail__span">SMS 서비스</span>
+                <input type="checkbox" name="" id="sms_check" th:field="*{sms_service}">
+              <li class="detail__li">
+                <span class="detail__span">이메일 서비스</span>
+                <input type="checkbox" name="" id="email_check" th:field="*{email_service}">
+              </li>
+
+              <!--              <li class="detail__li">&ndash;&gt;-->
+              <!--                <span class="detail__span">가입일</span>-->
+              <!--                <input class="detail__span_index" id="create_date" readonly th:field="*{#temporals.format(cdate, 'yyyy-MM-dd')}">-->
+              <!--              </li>-->
+
+            </ul>
+            <div class="info__detail_bottom">
+              <a href="my_info_mem_leave.html" id="member__leave" th:href="@{/members/{email}/leave(email=${s_email})}">회원탈퇴하기</a>
+              <!--              <button id="member__update"><a href="my_info.html" th:href="@{/members/info}">회원정보 수정</a></button>-->
+              <button type="submit"  id="member__update">회원정보수정</a>></button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- =========================================================================================== -->
+
+</div>
+</body>
+</html>

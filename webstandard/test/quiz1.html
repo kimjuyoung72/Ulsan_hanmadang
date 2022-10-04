@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {outline: 1px solid grey;}
+        ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul {
+            display: flex;
+            
+        }
+        ul li {
+            flex: 1;
+        }
+        .lower {
+            display: flex;
+        }
+        .lower .num1 {
+            flex: 1;
+        }
+        .lower .num2 {
+            flex: 1;
+        }
+        .lower .input {
+            flex: 1;
+        }
+          
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <ul class="upper">
+            <li>난수1</li>
+            <li>난수2</li>
+            <li>답</li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class=lower>
+            <div class="num1" value=""></div>
+            <div class="num2" value=""></div>
+            <input class="input" type="number">
+            <button class="input" >확인</button>
+            <button class="input" >다시</button>
+        </div>
+
+    </div>
+    <script>
+        const $num1 = Math.floor(Math.random()*1000);
+        const $num2 = Math.floor(Math.random()*1000);
+        console.log($num1);
+        // document.querySelector('.num1').;
+        
+        
+        
+
+    </script>
+</body>
+</html>

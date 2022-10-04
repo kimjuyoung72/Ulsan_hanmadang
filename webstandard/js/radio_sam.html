@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <fieldset>
+    <legend>간식 선택</legend>
+    <input type="radio" name="snack" id="v1">
+    <label for="v1">라면</label>
+    <input type="radio" name="snack" id="v2">
+    <label for="v2">떡복기</label>
+    <input type="radio" name="snack" id="v3">
+    <label for="v3">순대</label>
+  </fieldset>
+  <div id="msg"></div>
+  <script>
+    const $snackes = document.querySelectorAll('input[type=radio]');
+    //console.log($snackes);
+    // console.log(document.querySelector('fieldset').children);
+    // console.log(document.querySelector('fieldset').firstElementChild);
+    // console.log(document.querySelector('fieldset').lastElementChild);
+
+    //case1)
+    // for(let i=0; i<$snakes.length; i++){
+    //   $snakes[i].addEventListener('click',selectSnack_h);
+    // }
+    //case2)
+    // for(let $snack of $snackes){
+    //   $snack.addEventListener('click',selectSnack_h);
+    // }
+    //case3)
+    // $snackes.forEach(function(ele){
+    //   ele.addEventListener('click',selectSnack_h)
+    // });
+    //case4)
+    $snackes.forEach(ele=>ele.addEventListener('click',selectSnack_h));
+
+    function selectSnack_h(evt){
+      // console.log(evt.target.id);
+      // console.log(evt.target.parentElement);
+      // console.log(evt.target.parentElement.parentElement);
+      // console.log(evt.target.previousElementSibling);
+      // console.log(evt.target.nextElementSibling);
+      // console.log(evt.target.nextElementSibling.textContent);
+      // console.log(evt.target.closest('body'));
+
+      const selectedSnack = evt.target.nextElementSibling.textContent;
+      console.log(selectedSnack);
+      const msg = `${selectedSnack}를 선택했습니다.`;
+      document.getElementById('msg').textContent = msg;
+    }
+
+  </script>
+</body>
+</html>

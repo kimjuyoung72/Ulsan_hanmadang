@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/layout::main(
+        ~{::title},                 <!--/* title */-->
+        <!--/*--------------------------*/-->
+        <!--/*외부파일로 정의시 ex) link css */-->
+        ~{},                        <!--/* styles */-->
+        ~{},                        <!--/* scripts */-->
+        <!--/*내부태그로 정의시*/-->
+        ~{::style},                        <!--/* style */-->
+        ~{::script},                        <!--/* script */-->
+        <!--/*--------------------------*/-->
+        ~{::.upperHeader},          <!--/* upperHeader */-->
+        ~{::.nav},          <!--/* nav */-->
+        ~{::main},                  <!--/* main */-->
+        _                          <!--/* footer default*/-->
+      )}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="울산 문화 정보 사이트 메인 화면 기본 문서">
+  <meta name="keywords" content="울산,ulsan,information,홍보,advertisement,이벤트,event">
+  <meta name="author" content="KH java 할수있조">
+  <title>울산한마당 | 내정보화면</title>
+
+  <style>
+        .information .info__detail .detail__li{
+            display: flex;
+            margin: 20px 15px;
+        }
+
+        .information .info__detail .ul_ .detail__li .detail__span{
+            flex: 1;
+        }
+        .information .info__detail .ul_ .detail__li .detail__span_index {
+            flex: 2;
+        }
+        .checkedService {
+          font-size: 0.8em;
+          font-style: italic;
+          color: green;
+        }
+        .uncheckedService {
+          font-size: 0.8em;
+          font-style: italic;
+          color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+<!--<span th:if="${!session.isEmpty()}" th:text="${session.LoginMember.email}"></span>-->
+<div id="wrapper">
+  <div class="upperHeader">
+    <th:block th:replace="~{layout/upperHeader::afterUpperHeader}"></th:block>
+  </div>
+  <div class="nav">
+    <th:block th:replace="~{layout/nav::lowerHeader}"></th:block>
+  </div>
+  <!-- =========================================================================================== -->
+  <main id="myInfoMain">
+    <div class="container">
+      <div class="info__title">
+        <h2 id="title">내 정보</h2>
+      </div>
+
+      <div class="info__state">
+        <h3 id="state">내 정보</h3>
+      </div>
+
+      <div class="information">
+        <!-- common content  -->
+        <div class="info__index info__list">
+          <div class="list__title">
+            <p>목록</p>
+          </div>
+
+          <th:block th:replace="~{layout/nav::infoMenu}"></th:block>
+
+
+        </div>
+        <!-- ========= start content ========= -->
+
+        <div class="info__index info__detail">
+          <ul class="ul_">
+            <li class="detail__li">
+              <span class="detail__span">아이디</span>
+              <span class="detail__span_index" id="email"
+                    th:if="${!session.isEmpty()}"
+                    th:text="${s_email}">USER_ID</span>
+            </li>
+            <li class="detail__li">
+              <span class="detail__span">이름</span>
+              <span class="detail__span_index" id="name"
+                    th:if="${!session.isEmpty()}"
+                    th:text="${s_name}">USER_NAME</span>
+            </li>
+            <li class="detail__li">
+              <span class="detail__span">닉네임</span>
+              <span class="detail__span_index" id="nickname"
+                    th:if="${!session.isEmpty()}"
+                    th:text="${s_nickname}">USER_NICKNAME</span>
+            </li>
+            <li class="detail__li">
+              <span class="detail__span">전화번호</span>
+              <span class="detail__span_index" id="phone"
+                    th:if="${!session.isEmpty()}"
+                    th:text="${s_phone}">USER_TEL</span>
+            </li>
+            <li class="detail__li">
+              <span class="detail__span">생년월일</span>
+              <span class="detail__span_index" id="birthday"
+                    th:if="${!session.isEmpty()}"
+                    th:text="${s_birthday}">BIRTHDAY</span>
+            </li>
+            <li class="detail__li">
+              <span class="detail__span">회원 구분</span>
+              <span class="detail__span_index" id="gubun"
+                    th:if="${!session.isEmpty()}"
+                    th:text="${s_gubun}">일반|홍보</span>
+            </li>
+            <li class="detail__li">
+              <span class="detail__span">SMS 서비스</span>
+              <span class="detail__span_index" id="sms_service"
+                    th:if="${!session.isEmpty()}">
+                <th:block th:if="${s_sms_service}">
+                  <span class="checkedService">sms 서비스를 이용하고 있습니다</span>
+                </th:block>
+                <th:block th:unless="${s_sms_service}">
+                  <span class="uncheckedService">sms 서비스를 이용하고 있지 않습니다</span>
+                </th:block>
+              </span>
+            </li>
+            <li class="detail__li">
+              <span class="detail__span">이메일 서비스</span>
+              <span class="detail__span_index" id="email_service"
+                    th:if="${!session.isEmpty()}">
+                <th:block th:if="${s_email_service}">
+                  <span class="checkedService">이메일 서비스를 이용하고 있습니다</span>
+                </th:block>
+                <th:block th:unless="${s_email_service}">
+                  <span class="uncheckedService">이메일 서비스를 이용하고 있지 않습니다</span>
+                </th:block>
+              </span>
+            </li>
+            <li class="detail__li">
+              <span class="detail__span">가입일</span>
+              <span class="detail__span_index" id="cdate"
+                    th:if="${!session.isEmpty()}"
+                    th:text="${#temporals.format(s_cdate, 'yyyy-MM-dd')}">CREATE_DAY</span>
+            </li>
+          </ul>
+        </div>
+        <!-- ========= end content ========= -->
+      </div>
+    </div>
+  </main>
+
+  <!-- =========================================================================================== -->
+  <script th:inline="javascript">
+    // 전화번호 형태 하이픈 추가
+    let phone = document.getElementById('phone').innerHTML;
+    phone = phone.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+    document.getElementById('phone').innerHTML = phone;
+
+
+    // 회원 구분 코드에 맞춰서 출력
+    let gubun = document.getElementById('gubun').innerHTML;
+    if(gubun == 'M0101'){
+      document.getElementById('gubun').innerHTML = '일반 회원';
+    }
+    else if(gubun == 'M0102'){
+      document.getElementById('gubun').innerHTML = '홍보 회원';
+    }
+    else if(gubun == 'M01A1'){
+      document.getElementById('gubun').innerHTML = '관리자 1';
+    }
+    else if(gubun == 'M01A2'){
+      document.getElementById('gubun').innerHTML = '관리자 2';
+    }
+
+  </script>
+
+</div>
+</body>
+
+</html>

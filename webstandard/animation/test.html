@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* * {outline: 1px solid rgb(56, 55, 55);} */
+        body {
+            position: relative;
+        }
+        #box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 100px;
+            background-color: yellowgreen;
+            border-radius: 50%;
+            box-shadow: 10px 10px 10px #ccc;
+            animation-name: rotation;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: cubic-bezier(.17,.67,.88,.37);
+            animation-direction: alternate;
+
+            background: rgb(255,0,173);
+            background: radial-gradient(circle, rgba(255,0,173,1) 12%, rgba(2,0,36,1) 98%, rgba(203,28,103,0.9792798913043478) 100%);
+        }
+        #box:hover {
+            animation-play-state: paused;
+        }
+        #box h1 {
+            
+            line-height: 150px;
+            text-align: center;
+        }
+        @keyframes rotation {
+            0% {
+                top:0px;
+                left: 0px;
+                transform: rotate(0deg);
+            }
+            /* 50% {
+                top: 0;
+                left: 400px;
+                transform: rotate(180deg);
+            }  */
+            100% {
+                top: 0px;
+                left: 800px;
+                transform: rotate(720deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <h1>Rotation</h1>
+    </div>
+</body>
+</html>

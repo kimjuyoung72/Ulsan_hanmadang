@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event 6</title>
+</head>
+<style>
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <fieldset>
+            <legend>취미</legend>
+            <div class="hobby_item select__all">
+                <input type="checkbox" name="" id="allChk"><span>전체선택</span>
+            </div>
+            <ul class="hobby">
+                <li class="hobby__item">
+                    <!-- input 요소는 value 속성을 가진다 -->
+                    <input type="checkbox" name="hobby" id="" value="취미1"><span>취미1</span>
+                </li>
+                <li class="hobby__item">
+                    <input type="checkbox" name="hobby" id="" value="취미2"><span>취미2</span>
+                </li>
+                <li class="hobby__item">
+                    <input type="checkbox" name="hobby" id="" value="취미3"><span>취미3</span>
+                </li>
+            </ul>
+            <div class="btngrp">
+                <button class="btn btn__del">삭제</button>
+            </div>
+        </fieldset>
+        <div id="msg"></div>
+    </div>
+</body>
+    <script>
+        //핸들러
+        //전체선택버튼
+        const $hobbies = document.querySelectorAll('.hobby__item input[type=checkbox]');
+        const allChkClick_h = e => {
+            console.log(`click : ${e.target}`);
+            //hobby items를 찾아서
+            $hobbies.forEach($hobby=> $hobby.checked = e.target.checked ? true : false);
+        }
+        //삭제버튼
+        const clickDel_h = e => {
+            console.log('삭제버트 클릭됨!');
+            const answer = confirm('삭제하시겠습니까?');
+            // console.log(answer);
+            if(answer){
+                let str = '';
+                $hobbies.forEach($hobby=>{
+                    if($hobby.checked){
+                        str += $hobby.getAttribute("value") + ',';
+                    }
+                });
+                if(str.trim().length != 0){
+                    document.getElementById('msg').textContent = `${str.substr(0,str.length - 1)} 를 삭제했습니다요.`;
+                }
+            }
+        }
+
+        //이벤트 등록
+        //전체선택버튼
+        document.getElementById('allChk').addEventListener('click', allChkClick_h);
+        //삭제버튼
+        document.querySelector('.btn.btn__del').addEventListener('click', clickDel_h);
+    </script>
+</html>

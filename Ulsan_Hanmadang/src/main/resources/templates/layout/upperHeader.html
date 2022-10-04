@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<th:block th:fragment="beforeUpperHeader">
+  <!-- <header id="mainHeader"> -->
+  <!-- 로그인 하기 이전 Header layout -->
+  <div id="colorbox"></div>
+  <!--탑/메뉴-->
+  <div id="uppermost">
+    <div class="content content-upm">
+      <div class="logo"><h1 style="font-family: 'ulsanjunggu"><a  th:href="@{/logout}">울산 한마당</a></h1></div>
+      <div class="login"><a th:href="@{/login}">로그인</a><span class="interval">|</span><a th:href="@{/members/sign_in}">회원가입</a></div>
+    </div>
+  </div>
+</th:block>
+
+
+
+<th:block th:fragment="afterUpperHeader">
+  <!-- <header id="mainHeader"> -->
+  <!-- 로그인 한 후 Header layout -->
+  <div id="colorbox2"></div>
+  <div id="uppermost2">
+    <div class="content content-upm">
+      <div class="logo"><h1 style="font-family: 'ulsanjunggu"><a  th:href="@{/afterLogin}">울산 한마당</a></h1></div>
+      <div class="header_info_logout">
+        <span th:if="${!session.isEmpty()}" th:text="|${session.LoginMember.nickname} 님|"></span>
+        <a id="sign" href="#" th:href="@{/members/{email}/info(email=${s_email})}">내정보</a><span class="interval">|
+        <a id="log" href="logout.html" th:href="@{/logout}">로그아웃</a>
+      </div>
+    </div>
+  </div>
+</th:block>
+
+
+
+</html>

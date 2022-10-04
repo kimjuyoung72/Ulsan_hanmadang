@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* * { outline:1px solid red;} */
+    ul { margin:0;padding:0}
+    ul,li {list-style: none;}
+    a { text-decoration: none; color:#fff}
+
+    body{margin:0}
+
+    .navbar {
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 10px;
+      background-color: #0026ca;
+      position: relative;
+    }
+
+    .navbar__logo, .navbar__menu, .navbar__sns{
+      display: flex;
+      /* flex-wrap: wrap; */
+    }
+
+    /* logo */
+    .navbar .navbar__logo li:nth-child(1){
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right:5px;      
+    }
+    .navbar .navbar__logo li:nth-child(1) i{ 
+      font-size: 1.2em;     
+      color:#FFBA43;
+    }
+
+    .navbar .navbar__logo li:nth-child(2){
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+
+    /* gnb */
+    .navbar .navbar__menu li {
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size:1.3rem;
+    }    
+    .navbar .navbar__menu li:hover {
+      background-color: #0083FF;
+      transition: background-color 0.5s ease;
+      font-weight: bold;
+    }   
+    .navbar .navbar__menu li a:hover{
+      text-decoration: underline;
+    }
+    
+    /* sns */
+    .navbar .navbar__sns li {
+      margin-left:5px;
+      font-size: 1.2rem;
+    }
+    /* hamburger btn */
+    #hamburger {
+      display:none;
+      position:absolute;
+      top:5px;
+      right:12px;
+    }
+    @media screen and (max-width:767px) {
+      .navbar, 
+      .navbar .navbar__menu{
+        flex-direction: column;
+      }
+
+      #hamburger {
+        display: block;
+      }
+
+      .navbar .navbar__logo {
+        align-self: flex-start;
+      }
+      /* .navbar .navbar__menu,
+      .navbar .navbar__sns{
+        display:none;
+      } */
+      .navbar .navbar__menu {
+        width: 100%;
+        text-align: center;
+        border-top: 0.5px solid #ccc;
+        border-bottom: 0.5px solid #ccc;
+      }
+      .navbar .navbar__menu.active,
+      .navbar .navbar__sns.active{
+        display:none;
+      }
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/023d8f21ed.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="navbar">
+    <ul class="navbar__logo">
+      <li><a href=""><i class="fa-brands fa-reddit"></i></a></li>
+      <li><a href="">울산KH정보교육원</a></li>
+    </ul>
+    <ul class="navbar__menu">
+      <li><a href="#">menu1</a></li>
+      <li><a href="#">menu2</a></li>
+      <li><a href="#">menu3</a></li>
+      <li><a href="#">menu4</a></li>
+      <li><a href="#">menu5</a></li>
+    </ul>
+    <ul class="navbar__sns">
+      <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+      <li><a href="#"><i class="fa-brands fa-twitter-square"></i></a></li>
+      <li><a href="#"><i class="fa-brands fa-instagram-square"></i></a></li>
+    </ul>
+    <a href="#" id="hamburger"><i class="fa-solid fa-bars"></i></a>
+  </div>
+
+  <script>
+    const $hamburger = document.getElementById('hamburger');
+    $hamburger.addEventListener('click', handleHamburger);
+
+    function handleHamburger(){
+      console.log('햄버거버튼 클릭됨!!');
+
+      const $logo = document.querySelector('.navbar .navbar__logo');
+      const $menu = document.querySelector('.navbar .navbar__menu');
+      const $sns  = document.querySelector('.navbar .navbar__sns');
+
+      $logo.classList.toggle('active');
+      $menu.classList.toggle('active');
+      $sns.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

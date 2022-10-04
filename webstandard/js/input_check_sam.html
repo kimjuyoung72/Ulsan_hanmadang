@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="msg"></p>
+  <input type="text" ><button>클릭</button>
+  <script>
+    const $button = document.querySelector('button');
+
+    // const inputChek_h = function(){
+    //   console.log('클릭!');
+    // }
+    //const inputChek_h = ()=>console.log('클릭!');
+
+    // $button.addEventListener('click',inputChek_h);
+    // $button.addEventListener('click', function(){
+    //     console.log('클릭~!');
+    //   }
+    // );
+    //$button.addEventListener('click', ()=>console.log('클릭~!'));
+    $button.addEventListener('click',inputChek_h );
+    function inputChek_h(){
+      console.log('클릭~!');
+      const $input = document.querySelector('input');
+      if($input.value.trim().length == 0){
+        console.log('값을 입력하세요!');
+        document.getElementById('msg').textContent = '값을 입력하세요!';
+        $input.focus();
+        $input.style.backgroundColor='#ff000033';
+      }else{
+        document.getElementById('msg').textContent = '';
+      }
+    }
+  </script>
+</body>
+</html>

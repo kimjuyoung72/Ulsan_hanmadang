@@ -1,0 +1,144 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Roboto:ital,wght@0,400;1,500&display=swap');
+* { 
+    /* outline: 1px solid grey; */
+    text-decoration: none;
+}
+body { margin: 0;
+    font-family: 'East Sea Dokdo', cursive;
+    font-family: 'Roboto', sans-serif;
+}
+ul { 
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+header {
+    display: flex;
+    height: 50px;
+    /* position: fixed; */
+    /* position: sticky; */
+    top: 0;
+    z-index: 1000;
+}
+header .logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+header .logo i {
+    color: rgba(93, 150, 19, 0.63);
+}
+header .menu {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-end; */
+    flex: 3;
+}
+header .menu .topmenu {
+    font-weight: bold;
+    text-align: right;
+}
+/*1 tier menu */
+header .menu .gnb {
+    height: 30px;
+}
+header .menu .gnb > ul{
+    display: flex;
+}
+header .menu .gnb > ul > li {
+    flex: 1;
+    padding: 2px 3px;
+    background-color: rgba(48, 28, 28, 0.932);
+    color: azure;
+    text-align: center;
+    position: relative;
+}
+header .menu .gnb ul li:hover {
+    color: greenyellow;
+    cursor: pointer;
+
+}
+/* 2 tier menu */
+header .menu .gnb > ul > li > ul {
+    display: none;
+    position: absolute;
+    top: 23px;
+    left: 0; 
+    width: 100%;
+    background-color: rgba(167, 142, 142, 0.932);
+    transition: all 0.8s;
+}
+header .menu .gnb > ul > li > ul a:hover {
+    text-decoration: underline;
+}
+header .menu .gnb > ul > li:hover > ul {
+    display: block;
+    
+    z-index: 1;
+}
+header .menu .gnb > ul > li > ul > li {
+    padding: 2px 3px;
+    transition: all 0.8s;
+}
+header .menu .gnb > ul > li > ul > li:hover {
+    background-color: #666;
+    /* border-bottom: 1px solid #fff; */
+    columns: #fff;
+}
+
+header .menu .gnb > ul > li > ul > li a {
+    color: azure;
+}
+figure{
+    /* height: 100px; */
+    height: 300px;
+    width: 100%;
+    margin: 0;
+    position: relative; /*figcaption 이 자신을 기준으로 위치를 정할 수 있게 설정 */
+    background-image: url(../image/child-g4c846ed98_1280.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}   
+figure img {
+    height: 300px;
+    width: 100%;
+    
+
+}
+figure figcaption {
+    position: absolute; /*조상들 중 스테틱이 아닌 조상을 기준. 없으면 html */
+    top: 120px;
+    left: 50px;
+    color: azure;
+}
+figure figcaption p {
+    font-size: 0.5rem;
+}
+main section .content{
+    display: flex;
+    /* height: 200px; */
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /* justify-content: center;
+    align-items: center; */
+    padding: 50px;
+}
+main section article {
+    flex: 1;
+    max-height: 380px;
+    overflow: hidden;
+}
+footer {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    top: 100vh;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    color: azure;
+    font-size: 0.8rem;
+    background-color: rgba(48, 28, 28, 0.932);
+}

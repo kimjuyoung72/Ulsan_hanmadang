@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz 5번 select</title>
+    <script src="create_element.js"></script>
+    <style>
+        /* * {outline: 1px solid grey;} */
+        #operators {
+            width: 150px;
+            margin: 0;
+        }
+        #wrapper .meta {
+            display: flex;
+            /* justify-content: space-around; */
+            justify-content: center;
+            margin: 5px;
+            font-size: 0.8rem;
+        }
+        #wrapper .meta li {
+            flex: 1;
+            margin: 0;
+            text-align: center;
+            list-style: none;
+        }
+        #warpper .meta div {
+            width: 33%; 
+        }
+        #wrapper #ioArea {
+            display: flex;
+            flex-direction: column;
+        }
+        #wrapper #ioArea .input {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        #wrapper #ioArea .input .input__window {
+            text-align: center;
+        }
+        #wrapper #ioArea .input .selected_op {
+            min-width: 10px;
+            /* min-height: 10px;  */
+        }
+        #wrapper .exe {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #wrapper .exe button {
+            min-width: 150px;
+            
+        }
+        input.bg_green {
+            background-color: yellowgreen;
+        }
+        input.bg_red {
+            background-color: rgb(199, 43, 43);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <select name="" id="operators"> 
+            <option value="select_menu">연산자선택</option>
+            <option value="sum">덧셈</option>
+            <option value="sub">뺄셈</option>
+            <option value="mul">곱셈</option>
+            <option value="div">나눗셈</option>
+        </select>
+        <div class="meta">
+            <li>난수1</li>
+            <li>난수2</li>
+            <li class="computed">정답</li>
+        </div>
+        <div id="ioArea">
+
+            <div class="input"> 
+                <input id="random1" class="input__window" type="text" value=""></input>
+                <div class="selected_op"></div>
+                <input id="random2" class="input__window" type="text" value=""></input>=
+                <input id="userInput" class="input__window" type="text" value="" placeholder="정답 입력"></input>
+            </div>
+        </div>
+        <div class="exe">
+            <button class="btn_result">결과 확인</button>
+            <button class="btn_retry">다시 풀기</button>
+        </div>
+        
+    </div>
+    <script>
+        let randomNum1;
+        let randomNum2;
+        let $input1;
+        let $input2;
+        let $input3;
+        let result;
+        let flag;
+        const iter_n = 3;
+        let count = 0;
+        let selected_op = 'select_menu';
+        const $btnReset = makeElements('button', {type:'reset'}, '초기화');
+        // const $userInput = document.getElementById('userInput');
+        const $btnResult = document.querySelector('.btn_result');
+        initialize();
+        $btnResult.addEventListener('click', compare_result);
+        //4칙 연산 라디오 버턴을 선택하면 해당 연산후 정답 계산,출력
+        const $operators = document.getElementById('operators');
+        $operators.addEventListener('change', select_operator_h);
+        function select_operator_h(e) {
+                // console.log(e.target.val);
+                selected_op = e.target.value;
+                set_operator();
+                set_result();
+        }
+        function set_operator() {
+            console.log('연산자설정');
+            console.log(selected_op);
+            switch(selected_op){
+                case 'select_menu': 
+                            document.querySelector('.input .selected_op').textContent = '';
+                            break;
+                case 'sum': document.querySelector('.input .selected_op').textContent = '+';
+                            break;
+                case 'sub': document.querySelector('.input .selected_op').textContent = '-';
+                            break;
+                case 'mul': document.querySelector('.input .selected_op').textContent = 'x';
+                            break;
+                case 'div': document.querySelector('.input .selected_op').textContent = '/';
+                            break;
+                default: break;
+            }
+        }
+        function set_result(){
+            console.log('결과설정');
+            console.log(selected_op);
+            const $userInput = document.getElementById('userInput');
+            switch(selected_op){
+                case 'select_menu': 
+                            document.querySelector('.input .selected_op').textContent = '';
+                            document.getElementById('userInput').value = '';
+                            break;
+                case 'sum': result = parseInt($input1.value) + parseInt($input2.value);
+                            break;
+                case 'sub': result = parseInt($input1.value) - parseInt($input2.value);
+                            break;
+                case 'mul': result = parseInt($input1.value) * parseInt($input2.value);
+                            break;
+                case 'div': result = parseInt($input1.value) / parseInt($input2.value);
+                            break;
+                default: break;
+            }
+            if((selected_op == 'select_menu')||(result==null)) {
+                document.querySelector('.computed').textContent = '정답';
+            }else {
+                document.querySelector('.computed').textContent = '정답 = ' + result;
+            }
+            
+        }
+        function compare_result (e) {
+            console.log('확인 클릭!');
+            const $userInput = document.getElementById('userInput');
+            if(flag == 1){$userInput.classList.remove('bg_green');}
+            else if(flag == 0){$userInput.classList.remove('bg_red');}
+            if(count < iter_n){
+                if(selected_op == 'select_menu'){
+                    alert('연산자를 선택하세요');
+                }
+                else{
+                    if(($userInput.value != '')){
+                        if( result == $userInput.value){
+                            console.log('일치');
+                            $userInput.classList.add('bg_green');
+                            $userInput.style.color = '#111';
+                            flag = 1;
+                            count++;
+                            if(count < iter_n){
+
+                                copyInputs();
+                                initialize();
+                            }
+                            console.log(count);
+                            if(count == iter_n){
+                                document.querySelector('#wrapper .exe').appendChild($btnReset);
+                            }
+                        }else{
+                            console.log('불일치');
+                            $userInput.classList.add('bg_red');
+                            $userInput.style.color = '#eee';
+                            flag = 0;
+                        }
+                    }
+                }
+            }
+        }
+        
+        //다시 버튼 클릭 : 난수 다시 채우고 예상 결과창 비우기.
+        $btnRetry = document.querySelector('.btn_retry');
+        function retry_h(e) {
+            console.log('다시 클릭!');
+            const $userInput = document.getElementById('userInput');
+            if(flag == 1){$userInput.classList.remove('bg_green');}
+            else if(flag == 0){$userInput.classList.remove('bg_red');}
+            $userInput.value = '';
+            $userInput.style.color = '#111';
+        }
+        $btnRetry.addEventListener('click',retry_h);
+
+        // const reset_h = e=>{
+        //     count = 1;
+        //     document.location.href = "quiz_052_select.html";
+        // };
+        // $btnReset.addEventListener('click', reset_h);
+        $btnReset.addEventListener('click', e => {
+            const reply = confirm('다시 시작하시겠습니꺄~~?');
+            if(reply){
+                count = 1;
+                document.location.href = "quiz_052_select.html";
+            }
+        });
+        function initialize() {
+                console.log('초기화');
+                const $userInput = document.getElementById('userInput');
+                randomNum1 = Math.floor(Math.random()*1000) + 1;
+                randomNum2 = Math.floor(Math.random()*1000) + 1;
+                $input1 = document.getElementById('random1');
+                $input2 = document.getElementById('random2');
+                $input1.value = randomNum1;
+                $input2.value = randomNum2;
+                set_result();
+                // document.querySelector('.computed').textContent = '정답';
+                if(flag == 1){$userInput.classList.remove('bg_green');}
+                else if(flag == 0){$userInput.classList.remove('bg_red');}  
+        }
+        function copyInputs() {
+            console.log('요소 더하기');
+            // document.getElementById('userInput').id = 'solved';
+            document.getElementById('random1').id = 'solved';
+            document.getElementById('random2').id = 'solved';
+            document.getElementById('userInput').id = 'solved';
+            document.querySelector('.input .selected_op').classList.remove('selected_op');
+            const $input = makeElements('div', {class:'input'}, 
+                            makeElements('input', {id:'random1', class:'input__window', type:'text'}),
+                            makeElements('div', {class:'selected_op', type:'text',}),
+                            // document.querySelector('.input .selected_op').textContent,
+                            makeElements('input', {id:'random2', class:'input__window', type:'text'}),'=',
+                            makeElements('input', {id:'userInput', class:'input__window', 
+                                        type:'text', placeholder:'정답 입력'})
+            );
+            document.getElementById('ioArea').appendChild($input);
+            set_operator();
+        }
+
+    </script>
+</body>
+</html>

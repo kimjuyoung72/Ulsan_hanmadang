@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function f(x, y, ...z) {
+            /*arguments : 함수 내부에서 암묵적으로 만들어지는 변수로 매개변수정보를 배열로 갖고 있다 */
+            console.log(arguments);
+            console.log(x, y, z);
+            if(z) {
+                console.log(`z = ${z}`);
+                for(let ele of z) {
+                    console.log(ele);
+                }
+            }else{
+                console.log('undefined');
+                // console.log(`z = ${z}`);
+            }
+            
+        }
+
+        f(1, 2, 3);
+        f(1, 2);
+        f(1);
+        f(1, 2, 3, 4);
+    </script>
+</body>
+</html>

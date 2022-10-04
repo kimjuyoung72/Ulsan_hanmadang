@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="울산 문화 정보 사이트 메인 화면 기본 문서">
+    <meta name="keywords" content="울산,ulsan,information,홍보,advertisement,이벤트,event">
+    <meta name="author" content="KH java 할수있조">
+    <title>울산한마당 | 내정보화면</title>
+    <!-- layout_main_grid.css -->
+    <script src="my_info_menu.js"></script>
+    <link rel="stylesheet" href="my_info.css">    
+    
+    <link rel="stylesheet" href="../css/common.css">    
+    <script src="https://kit.fontawesome.com/bb2dfe5236.js" crossorigin="anonymous"></script>
+
+    <style> 
+        .information .info__detail .detail__li{
+            display: flex;
+            margin: 20px 15px;
+        }
+
+        .information .info__detail .ul_ .detail__li .detail__span{
+            flex: 1;
+        }
+        .information .info__detail .ul_ .detail__li .detail__span_index {
+            flex: 2;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <!-- <header id="mainHeader"> -->
+            <div class="header upper">
+                <a href="main_logout.html" id="logo"><h1>울산 한마당</h1></a>  
+                <div id="topMenu">
+                        <a id="memberMenu" href="#">회원메뉴</a>
+                        <div id="register">
+                            <a id="sign" href="sign_in.html">회원가입</a>
+                            <a id="log" href="log_in.html">로그인</a>   
+                            <!-- <a href="#" id="hamburger"><i class="fa-solid fa-bars"></i> -->
+                            <div id="hamburger"><i class="fa-solid fa-bars"></i>
+                                <ul class="hamburger__menu">
+                                    <li class="hamburger__menu_top"><a href="log_in.html" class="item1">로그인</a></li>
+                                    <li class="hamburger__menu_top"><a href="sign_in.html" class="item2">회원가입</a></li>
+                                    <li class="hamburger__menu_top"><a href="#" class="item3">회원메뉴</a></li>
+                                    <li class="hamburger__menu_gnb"><a href="event_info.html" class="item1">공연전시</a></li>
+                                    <li class="hamburger__menu_gnb"><a href="promotion.html" class="item2">홍보</a></li>
+                                    <li class="hamburger__menu_gnb"><a href="review.html" class="item3">후기</a></li>
+                                    <li class="hamburger__menu_gnb"><a href="map.html" class="item4">문화지도</a></li>      
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="header lower">
+                <nav id="gnb">
+                    <h3>
+                        <li id="menu1" class="menu__itme"><a href="event_inf.html">공연 전시</a></li>
+                        <li id="menu2" class="menu__itme"><a href="promotion.html">홍 보</a></li>
+                        <li id="menu3" class="menu__itme"><a href="review.html">후 기</a></li>
+                        <li id="menu4" class="menu__itme"><a href="map.html">문화 지도</a></li>
+                    </h3>
+                </nav>
+                <div id="mainSearch" class="search">
+                    <input class="search__input" type="text" class="input" placeholder ="검색어">
+                    <button class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+        <!-- </header> -->
+        <main id="myInfoMain">
+            <div class="container">
+                <div class="info__title">
+                    <h2 id="title">내 정보</h2>
+                </div>
+
+                <div class="info__state">
+                    <h3 id="state">내 정보</h3>
+                </div>
+
+                <div class="information">
+                    <div class="info__index info__list">
+                        <div class="list__title">
+                            <p>목록</p>
+                        </div>
+                        <div class="tab__state">
+                            <ul class="info__side">
+                                <li class="info__side_menu on">
+                                    <a class="" href="my_info.html">내 정보</a>
+                                </li>
+                                <li class="info__side_menu">
+                                    <a class="" href="my_info_update_pwd.html">내 정보 수정</a>
+                                </li>
+                                <li class="info__side_menu" >
+                                    <span id="toc-toggle" onclick="openCloseToc()">
+                                            활동내역 
+                                            <img src="../img/arrow_down.png" id="arrow">
+                                    </span>
+                                    <ul class="dropmenu" id="toc-content" style="display: none;">
+                                        <li><a href="my_info_history_post.html">내가 쓴 글</a></li>
+                                        <li><a href="my_info_history_comment.html">내가 쓴 댓글</a></li>
+                                        <li><a href="my_info_history_likelist.html">좋아요 목록</a></li>
+                                    </ul>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <!--  -->    
+                    <div class="info__index info__detail">
+                        <ul class="ul_">
+                            <li class="detail__li">
+                                <span class="detail__span">아이디</span>
+                                <span class="detail__span_index">USER_ID</span>
+                            </li>
+                            <li class="detail__li">
+                                <span class="detail__span">닉네임</span>
+                                <span class="detail__span_index">USER_NICKNAME</span>
+                            </li>
+                            <li class="detail__li">                                
+                                <span class="detail__span">이름</span>
+                                <span class="detail__span_index">USER_NAME</span>
+                            </li>
+                            <li class="detail__li">
+                                <span class="detail__span">전화번호</span>
+                                <span class="detail__span_index">USER_TEL</span>
+                            </li>
+                            <li class="detail__li">
+                                <span class="detail__span">SMS 서비스</span>
+                                <span class="detail__span_index">CHECK_BOX</span>
+                            </li>
+                            <li class="detail__li">
+                                <span class="detail__span">이메일 서비스</span>
+                                <span class="detail__span_index">CHECK_BOX</span>
+                            </li>
+                            <li class="detail__li">
+                                <span class="detail__span">생년월일</span>
+                                <span class="detail__span_index">BIRTHDAY</span>
+                            </li>
+                            <li class="detail__li">
+                                <span class="detail__span">가입일</span>
+                                <span class="detail__span_index">CREATE_DAY</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+
+
+        </main>
+        <aside id="mainLeftAside" class="main__aside">left aside</aside>
+        <aside id="mainRightAside" class="main__aside">right aside</aside>
+        <footer id="footer">
+            <div class="footer__upper">
+                <p class="left"><a href="#">개인정보처리방침</a></p>
+                <p class="right">
+                    <li><a href="#"><i class="fa-brands fa-facebook-square"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-twitter-square"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-instagram-square"></i></a></li>
+                </p>
+            </div>
+            <div class="footer__lower">(44677)울산 남구 삼산로 35번길 19 | 프로젝트 : 울산 한마당 Copyright @ All rights reserved.</div>
+        </footer> 
+    </div>
+    <script>
+        
+    </script>
+</body>
+</html>

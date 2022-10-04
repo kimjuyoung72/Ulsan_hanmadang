@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input.bg_green {
+      background-color: green;
+    } 
+    input.bg_red {
+      background-color: red;
+    } 
+  </style>
+</head>
+<body>
+  <input id='val1' type="text">+<input id='val2' type="text">=<input id='userInput' type="text">
+  <button id="btnResult">결과확인</button><button id="btnRestart">다시풀기</button>
+  <script>
+    //1) 2개 랜덤값 발생
+    const randomValue1 = Math.floor(Math.random()*1000)+1;
+    const randomValue2 = Math.floor(Math.random()*1000)+1;
+
+    //2) input 요소에 랜덤값 반영
+    const $val1 = document.getElementById('val1');
+    const $val2 = document.getElementById('val2');
+
+    $val1.value = randomValue1;
+    $val2.value = randomValue2;
+
+    //3) 결과확인버튼 클릭
+    //3-1) input요소값을 더한값과 사용자 btnResult
+    const $btnResult = document.getElementById('btnResult');
+    $btnResult.addEventListener('click', result_f);
+    function result_f(evt){
+      console.log('결과확인버튼 클릭됨!');
+      const resultOfComputer = parseInt($val1.value) + parseInt($val2.value);
+      console.log(resultOfComputer);
+      const $userInput = document.getElementById('userInput');
+
+      if(resultOfComputer == $userInput.value) {
+        console.log('같다');
+          $userInput.classList.add('bg_green');
+          $userInput.classList.remove('bg_red');
+      }else{
+        console.log('틀리다');
+        $userInput.classList.add('bg_red');
+        $userInput.classList.remove('bg_green');
+      }
+    }
+
+    //3-2) 3-1)일치하면 결과값요소의 배경색을 초록생
+    //         불일치하면 결과값요소의 배경색을 빨간색
+
+    //4) 다시풀기버튼 클릭
+    const $btnRestart = document.getElementById('btnRestart');
+    $btnRestart.addEventListener('click', restart_f);
+    function restart_f(evt){
+      console.log('다시풀기버튼 클릭됨!');
+    }
+
+    //4-1)input요소에 랜덤값 반영
+    //4-2)결과값요소 초기화
+
+  </script>
+</body>
+</html>

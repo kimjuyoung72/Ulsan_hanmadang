@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* * {outline:1px solid red;} */
+    table {
+      border: 1px solid #ccc;
+      border-collapse: collapse;
+    }
+    table th,
+    table td{
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="btngrp">
+      <button class="btn btn__list">데이터수신</button>
+    </div>
+    <div class="criteria">
+      <fieldset class="criteria__gender">
+        <legend>성별</legend>
+        <label for="male">남</label><input type="radio" name="gender" id="남">
+        <label for="female">여</label><input type="radio" name="gender" id="여">
+      </fieldset>
+      <!-- <fieldset>
+        <legend>나이순 정렬</legend>
+        <label for="">오름차순</label><input type="radio" name="sort" id="">
+        <label for="">내림차순</label><input type="radio" name="sort" id="">
+      </fieldset> -->
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>성별</th>
+          <th>나이</th>
+          <th>혈액형</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>이름1</td>
+          <td>남</td>
+          <td>10</td>
+          <td>A</td>
+        </tr>
+      -->
+      </tbody>
+    </table>
+
+  </div>
+  <script>
+    const data = {
+      result:'success',    // success: 수신성공, fail:수신실패
+      data:[
+        {name:'이름1',gender:'남',age:10,blood:'A'},
+        {name:'이름2',gender:'여',age:20,blood:'B'},
+        {name:'이름3',gender:'남',age:30,blood:'O'},
+        {name:'이름4',gender:'여',age:40,blood:'AB'},
+        {name:'이름5',gender:'남',age:50,blood:'A'}
+      ]
+    };
+
+    //객체1개를 tr태그로 렌더링
+    const trTag = ({name,gender,age,blood})=>{
+      return `<tr><td>${name}</td><td>${gender}</td><td>${age}</td><td>${blood}</td></tr>`
+    };       
+    
+
+    /* 데이터수신 시작 */
+    const $btnList = document.querySelector('.btn.btn__list');
+    const btnList_h = e => {
+      //데이터 추출
+      const result = data.data.map(ele=>trTag(ele));
+      document.querySelector('table tbody').innerHTML= result.join('');
+    };
+    $btnList.addEventListener('click',btnList_h);
+    /* 데이터수신 종료 */
+
+    const $criteriaGender = document.querySelector('.criteria__gender');
+    const criteriaGender_h = ({target,currentTarget}) => {
+      // console.log('성별'+target.id);
+      // console.log('성별'+currentTarget);
+
+      const result = data.data.filter(ele=>ele.gender==target.id)
+                              .map(ele=>trTag(ele));
+      document.querySelector('table tbody').innerHTML= result.join('');
+    }
+    $criteriaGender.addEventListener('change',criteriaGender_h);
+
+  </script>
+</body>
+</html> 

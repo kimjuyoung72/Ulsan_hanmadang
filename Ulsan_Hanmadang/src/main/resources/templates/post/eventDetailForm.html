@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/layout::main(
+
+        <!--/* =========== 사용 의미 =========== */-->
+        <!--/* ~{::xxx} : layout페이지에 선언한 요소가 있지만 layout에서 안쓰고 현재 페이지의 xxx를 사용 */-->
+        <!--/* ~{}      : layout페이지의 해당 요소를 사용  (현재 페이지에서 작성안해도 되는 코드) */-->
+        <!--/* _        : layout페이지 그대로 요소를 사용 */-->
+        <!--/* ~{} 와 _ 의 차이는 fragment 선언 유무? _ 로 선언하면 해당 페이지에 선언안해도 됨 ex) footer */-->
+
+        ~{::title},                 <!--/* title */-->
+        <!--/*--------------------------*/-->
+        <!--/*외부파일로 정의시 ex) link css */-->
+        ~{},                        <!--/* styles */-->
+        ~{::script},                        <!--/* scripts */-->
+        <!--/*내부태그로 정의시*/-->
+        ~{},                        <!--/* style */-->
+        ~{},                        <!--/* script */-->
+        <!--/*--------------------------*/-->
+        ~{::.upperHeader},          <!--/* upperHeader */-->
+        ~{::.nav},          <!--/* nav */-->
+        ~{::main},                  <!--/* main */-->
+        _                          <!--/* footer default*/-->
+      )}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="울산 문화 정보 사이트 메인 화면 기본 문서">
+  <meta name="keywords" content="울산,ulsan,information,홍보,advertisement,이벤트,event">
+  <meta name="author" content="KH java 할수있조">
+  <title>공연상세</title>
+
+  <script defer src="" th:src="@{/js/post/detailForm.js}"></script>
+</head>
+<body>
+<div class="wrapper">
+  <div class="upperHeader">
+    <!--  layout/upperHeader가 경로인 파일의 beforeUpperHeader 조각을 replace 한다    -->
+    <th:block th:replace="~{layout/upperHeader::beforeUpperHeader}"></th:block>
+  </div>
+  <div class="nav">
+    <th:block th:replace="~{layout/nav::nav}"></th:block>
+  </div>
+
+
+  <!-- =============================================         -->
+  <div class="main">
+    <main id="myInfoMain">
+      <!--  내정보 code      -->
+
+      <div class="post-wrap" th:data-code="${category}">
+        <div class="post-title"><h3>상세정보</h3></div>
+        <div class="class-body">
+          <form action="" method="post" th:object="${event}">
+            <input type="hidden" th:field="*{eventId}">
+            <div class="post-hit">
+              <span class="bbs-hit-content bbs-hit-tit">조회수</span>
+              <span class="bbs-hit-content bbs-hit-cnt" th:text="*{hit}">10</span>
+            </div>
+            <div class="post-content">
+              <div><lable>제목 : </lable><span name="" id="" th:text="|*{prfnm}|"></span></div>
+              <div>
+                <img width="180px" src="http://localhost:9080/attach/img/P0102/82335ef9-18d7-4509-b3d4-df57d8d50a48.jpg"
+                     th:if="*{poster}" th:src="*{poster}"
+                     alt="이미지를 불러올수 없습니다">
+              </div>
+              <div><lable>일시 : </lable><span th:text="|*{prfpdfrom} ~ *{prfpdto} |"></span></div>
+              <div><lable>공연장 : </lable>
+                <a href="" th:href="@{/post/fac/{id}(id=${event.mt10id})}"><span th:text="|*{fcltynm} |"></span></a></div>
+              <div><lable>출연진 : </lable><span th:text="|*{prfcast} |"></span></div>
+              <div><lable>제작 : </lable><span th:text="|*{prfcrew} |"></span></div>
+              <div><lable>런타임 : </lable><span th:text="|*{prfruntime} |"></span></div>
+              <div><lable>연령 : </lable><span th:text="|*{prfage} |"></span></div>
+              <div><lable>제작 : </lable><span th:text="|*{entrpsnm} |"></span></div>
+              <div><lable>티켓가격 : </lable><span th:text="|*{pcseguidance} |"></span></div>
+              <div><lable>장르 : </lable><span th:text="|*{genrenm} |"></span></div>
+              <div><lable>공연상태 : </lable><span th:text="|*{prfstate} |"></span></div>
+              <div><lable>공연시간 : </lable><span th:text="|*{dtguidance} |"></span></div>
+              <div><lable>내용</lable></div>
+              <!--                <div><textarea name="" id="" rows="10" class="w100" th:field="*{bcontent}" th:readonly="readonly"></textarea></div>-->
+              <div><p th:utext="*{sty}"></p></div>
+            </div>
+            <div class="post-btngrp">
+              <!--                <button type="button" id="replyBtn">답글</button>-->
+              <!--글작성자와 세션아이디체크해서 동이한경우만 수행-->
+              <!--                <th:block th:if="*{email} eq ${s_email}">-->
+              <!--                  <button type="button" id="editBtn">수정</button>-->
+              <!--                  <button type="button" id="delBtn">삭제</button>-->
+              <!--                </th:block>-->
+              <!-------------------------------------------->
+              <button type="button" id="listBtn">목록</button>
+            </div>
+            <!--              <div class="bbs-attach">-->
+            <!--                <div><label>첨부</label></div>-->
+            <!--                <div>-->
+            <!--                  <div th:each="file : ${attachFiles}">-->
+            <!--                    <a href="" th:href="@{|/attach/down/${file.uploadfileId}|}" th:text="${file.upload_filename}"></a>-->
+            <!--                    <th:block th:if="${#strings.contains(file.ftype,'image')}" >-->
+            <!--                      <img th:src="@{|/attach/view/${file.uploadfileId}|}" th:width="30px" th:height="30px">-->
+            <!--                    </th:block>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--              </div>-->
+          </form>
+        </div>
+      </div>
+    </main>
+    <!--  main을 세분화하려면 상단 리스트에 추가하고 작성    -->
+  </div>
+  <!--end main -->
+</body>
+</html>

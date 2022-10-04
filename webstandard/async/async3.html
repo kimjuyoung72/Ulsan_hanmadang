@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><input type="text" id="num1">+<input type="text" id="num2">=<input type="text" id="result" readonly></p>
+    <button id="addBtn">등록</button>
+    <button id="addBtn2">등록</button>
+    <button id="addBtn3">등록</button>
+    
+    <script>
+        //case1)
+        addBtn.addEventListener('click', function(e) {
+            console.log('called addBtn');
+            result.value = parseInt(num1.value) + parseInt(num2.value);
+            console.log(result.value);
+        });
+        //case2)
+        let sum;
+        addBtn2.addEventListener('click', function(e) {
+            console.log('called addBtn');
+            sum = parseInt(num1.value) + parseInt(num2.value);
+        });
+        result.value = sum;
+        console.log(sum);
+        //case3)
+        const result3 = addBtn3.addEventListener('click', function(e) {
+            console.log('called addBtn');
+            return parseInt(num1.value) + parseInt(num2.value);
+        });
+        console.log(result3)
+    </script>
+</body>
+</html>

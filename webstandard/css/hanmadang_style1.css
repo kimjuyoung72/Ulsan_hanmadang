@@ -1,0 +1,196 @@
+@charset "utf-8"; 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Splash&display=swap');
+@font-face {
+    font-family: 'ulsanjunggu';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/ulsanjunggu.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    outline: 1px solid grey;
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+}
+html {
+    font-size: 16px;
+}
+top {
+    min-width: 350px;
+    height: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+/*메인 화면 타이틀 : 울산 한마당*/
+top>a {
+    flex-basis: 50%;
+    min-width: 450px;
+    font-size: 5rem;
+    color: #000;
+    font-family: 'ulsanjunggu';
+    text-align: center;
+    
+}
+top>nav {
+    min-width: 200px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+/*상단 회원가입, 로그인 */
+top>nav>a { 
+    margin: 10px 8px;
+    color: #000;
+    align-items: baseline;
+    text-align: start;
+    font-weight: bold;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+/*메뉴바*/
+header>nav {
+    margin: 15px 10px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    box-sizing: content-box;
+}
+/*메뉴*/
+header>nav>menu {
+    flex-basis: 150px;
+    min-width: 100px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    box-sizing: content-box;
+}
+header>nav>menu>a {
+    color: #000;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+body {
+    width: 100vw;
+}
+.div-main {
+    width: 100%;
+    display: flex;
+}
+
+
+.div-main>.left-aside {
+    width: 10%;
+    flex-shrink: 3;
+}
+.div-main>.right-aside {
+    width: 10%;
+    flex-shrink: 5;
+    
+}
+.div-main>main {
+    width: 80%;
+    flex-shrink: 1;
+}
+.div-main>main>.div-upper {
+    width: 100%;
+    /* min-width: 60vw; */
+    /* height: 80vh; */
+    display: flex;
+    flex-wrap: wrap;
+}
+.div-main>main>.div-upper>.div-ad {
+    display: flex;
+}
+.div-main>main>.div-upper>.div-ad>.div-boards {
+    /* margin: 5px 0px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.div-main>main>.div-upper>.div-ad>.div-boards>.div-board {
+    width: 33px;
+    height: 120px;
+    margin: 5px 0px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: content-box;
+}
+.div-main>main>.div-upper>.div-ad>.ad {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.div-main>main>.div-upper>.div-ad>.ad>.ad-images {
+    width: 100%;
+    margin: 10px 0px;
+    display: flex;
+    /* max-width: 1200px; */
+    /* min-width: 1100px; */
+    /* margin: 5px 0px; */
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    box-sizing: content-box;
+}
+.div-main>main>.div-upper>.div-ad>.ad>.ad-images {
+    font-size: 1.2rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+}
+.div-main>main>.div-upper>.div-ad>.ad>.ad-images>figure {
+    margin: 0 10px;
+    display: flex;
+    border-radius: 3px;
+}
+.div-main>main>.div-upper>.div-ad>.ad>.ad-images>figure>.ad-image {
+    width: 100px;
+    height: 120px;
+    margin: 5px 0px;
+    box-sizing: border-box;
+}
+.div-main>main>.div-upper>.div-ad>.ad>.ad-images>figure>p {
+    width: 4rem;
+    margin: 5px 0px;
+    font-size: 0.5rem;
+    box-sizing: border-box;
+}
+.div-main>main>.div-lower {
+    display: flex;
+    justify-content: space-evenly;
+}
+.div-main>main>.div-lower>article {
+    display: flex;
+    flex-wrap: wrap;
+}
+.div-main>main>.div-lower>article>.board {
+    /* width: 20vw; */
+    width: 47%;
+    /* height: 150px; */
+    height: 150px;
+    margin: 10px;
+    
+}
+.div-main>main>.div-lower>article>.ad-links {
+    width: 40vw;
+    height: 300px;
+    margin: 10px;
+    
+}
+.div-main>main>.div-lower>map {
+    width: 50vw;
+    height: 460px;
+    margin: 10px;
+    box-sizing: border-box;
+    background-image: url(../image/mapImagesample.png);
+    background-size: cover;
+}
+
+.div-main>main>.footer {
+    /* width: 90vw; */
+    /* min-width: 70vw; */
+    height: 150px;
+
+}

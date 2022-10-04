@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>후기</title>
+  <link rel="stylesheet" href="" th:href="@{/css/post/review/addForm.css}">
+  <!--  <script defer th:src="@{js/common/ckeditor.js}"></script>-->
+  <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+  <script defer src="" th:src="@{/js/post/review/addForm.js}"></script>
+</head>
+
+<body>
+<h3>후기등록</h3>
+<hr>
+<form id="addForm" action="" method="post" th:object="${form}" enctype="multipart/form-data">
+
+  <div><label th:for="reviewPostTitle">제목</label></div>
+  <div>
+    <input type="text" th:field="*{reviewPostTitle}">
+  </div>
+
+  <div>
+    <label for="">관람일시</label>
+    <input type="date">
+    <select name="event" id="event">
+      <option value="">==선택==</option>
+      <option value="">거주자 우선주차 구역</option>
+    </select>
+  </div>
+  <div><textarea name="" id="" cols="30" rows="10" placeholder="내용을 입력하세요." th:field="*{reviewPostContent}" th:class="ck-editor__editable"></textarea></div>
+  <div><lable th:for="files">첨부</lable></div>
+  <div><input type="file" th:field="*{files}" multiple></div>
+</form>
+<div>
+  <button id="addBtn" type="button">등록</button>
+  <button type="button" id="listBtn" >목록</button>
+</div>
+<script>
+  //등록
+  addBtn.addEventListener('click', e => {
+    document.getElementById('addForm').submit();
+  });
+
+  //목록
+  listBtn?.addEventListener("click",e=>{
+    location.href = `/reviews`;
+  });
+</script>
+</body>
+</html>
